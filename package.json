@@ -1,0 +1,12 @@
+{
+  "name": "Saffron",
+  "version": "1.0.0",
+  "description": "Saffron UI library",
+  "main": "Saffron.js",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "uuid": "^8.3.2"
+  }
+}

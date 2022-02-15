@@ -1,0 +1,7 @@
+.nomargin {
+    margin: 0;
+}
+
+.margin {
+    margin: revert;
+}

@@ -1,0 +1,53 @@
+.button {
+    background: none;
+    border: none;
+    color: gray;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.button:hover {
+    color: rgb(70,70,70);
+}
+
+.button.primary:not(.outline) {
+    transition: border-color 0.2s linear;
+    background: black;
+    color: lightgray;
+    padding: 7px 14px;
+    border-radius: 5px;
+}
+
+.button.primary.outline {
+    transition: border-color 0.2s linear;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 7px 14px;
+    border-radius: 5px;
+}
+
+
+.disabled {
+    cursor: not-allowed;
+}
+
+.button.primary:not(.outline,.disabled):hover {
+    background: rgb(40,40,40);
+}
+
+.button.primary.outline:not(.disabled):hover {
+    border-color: black;
+}
+
+.shadow {
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.invert:not(#\9):not(.outline) {
+    background: white;
+    color: black;
+}
+
+.invert.outline:not(#\9) {
+    border-color: white;
+    color: white;
+}

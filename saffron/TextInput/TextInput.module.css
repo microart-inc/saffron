@@ -1,0 +1,52 @@
+.textinput {
+    transition: border-color 0.2s linear;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    appearance: none;
+    z-index: 1;
+}
+
+.textinput:focus {
+    outline: none;
+    border-color: black;
+}
+
+.placeholder {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+.placeholder>* {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.center {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.transparent {
+    background: transparent;
+}
+
+.sampleplaceholder {
+    font-size: 0.85em;
+    color: gray;
+}
+
+.disabled {
+    cursor: not-allowed;
+    background: rgb(245,245,245);
+    border: 1px solid rgb(230,230,230);
+}

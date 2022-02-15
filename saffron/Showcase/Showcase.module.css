@@ -1,0 +1,14 @@
+.showcase {
+    background: black;
+    background-position: center !important;
+    background-size: cover !important;
+    color: white;
+    aspect-ratio: 16/6;
+    padding: 50px 10px;
+    width: 100vw;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}

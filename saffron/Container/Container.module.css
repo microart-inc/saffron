@@ -1,0 +1,8 @@
+.container {
+    max-width: 60%;
+    margin: auto;
+    background: white;
+    box-sizing: border-box;
+    padding: 40px 0;
+    color: black;
+}

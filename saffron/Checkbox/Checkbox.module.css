@@ -1,0 +1,45 @@
+.checkbox {
+    border: 1px solid rgba(0,0,0,0.2);
+    min-width: 1em;
+    min-height: 1em;
+    border-radius: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+    aspect-ratio: 1/1;
+}
+
+.checkbox:hover {
+    border-color: rgb(40,40,40);
+}
+
+.checkbox.checked:hover {
+    background: rgb(40,40,40);
+}
+
+.checked {
+    background: black;
+}
+
+.disabled {
+    border-color: gray;
+    cursor: not-allowed;
+}
+
+.disabled.checked {
+    background: gray;
+}
+
+.checkmark {
+    opacity: 0;
+    font-size: 1em;
+}
+
+.checked .checkmark {
+    opacity: 1;
+    color: white;
+}
+
+.faint {
+    color: rgb(60,60,60);
+    font-size: 0.85em;
+}

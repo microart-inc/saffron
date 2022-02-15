@@ -1,0 +1,18 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 0;
+    font-size: 0.7em;
+    background: rgb(240,240,240);
+    color: gray;
+}
+
+.container>img {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 15px;
+}

@@ -1,0 +1,29 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: darkgray;
+    cursor: pointer;
+}
+
+.app:hover {
+    text-decoration: underline;
+}
+
+.app>img {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 22.37%;
+    width: 150px;
+    height: 150px;
+}
+
+.app>b {
+    color: rgb(30, 30, 30);
+    margin-top: 10px;
+    font-size: 0.8em;
+}
+
+.app>span {
+    color: gray;
+    font-size: 0.8em;
+}

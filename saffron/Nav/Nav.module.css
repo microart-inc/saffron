@@ -1,0 +1,176 @@
+.centerWrapper {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: stretch;
+    padding: 15px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(20px) saturate(2);
+    position: sticky;
+    top: 0;
+    z-index: 99999999999999999999999;
+}
+
+.container > div:last-child > .button {
+    margin-right: 13px;
+}
+
+.container > div:last-child > .button:last-child {
+    margin: 0;
+}
+
+.logocontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 70ms linear;
+}
+.logo {
+    height: 25px;
+    width: 25px;
+    background-size: cover !important;
+    background-position: center !important;
+    cursor: pointer;
+}
+
+.logocontainer:hover {
+    transform: scale(1.1);
+}
+
+.searchplaceholder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.searchplaceholder > * {
+    color: gray;
+    font-size: 0.85em;
+}
+
+.searchplaceholder > *:not(:last-child) {
+    margin-right: 4px;
+}
+
+.textinput {
+    min-width: 270px;
+}
+
+.mobilemenu {
+    display: none;
+}
+.mobilemenu > svg {
+    aspect-ratio: 1/1;
+    height: 100%;
+    width: auto;
+    color: rgb(100,100,100);
+}
+.logocontainer > *:not(:last-child) {
+    margin-right: 10px;
+}
+
+.buttons {
+    display: flex;
+}
+
+.absoluteCenter {
+    position: absolute;
+    width: 100vw;
+    left: 0;
+    right: 0;
+    top: 70px;
+    display: flex;
+    z-index: 10000000;
+    justify-content: space-evenly ;
+}
+
+.suggestionsWrapper {
+    background: white;
+    padding: 8px 0px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    background: white;
+    min-width: 400px;
+    border-radius: 5px;
+    align-items: stretch;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tinytext {
+    font-size: 0.8em;
+    color: gray;
+    margin-left: 8px;
+}
+
+.thinDivider {
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin: 3px 0;
+}
+
+.suggestion {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    align-items: center;
+    gap: 1em;
+    background: transparent;
+}
+.suggestion:hover {
+    background: rgba(0,0,0,0.03);
+    cursor: pointer;
+}
+
+.suggestioninfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.suggestion h3 {
+    margin: 0;
+    color: rgb(60,60,60);
+}
+
+.suggestion span {
+    color: rgb(160,160,160);
+    font-size: 0.8em;
+}
+
+.suggestionimage {
+    width: 60px;
+    height: 60px;
+    border-radius: 22.7%;
+    border: 1px solid rgba(0,0,0,0.07);
+}
+
+@media screen and (max-width: 800px) {
+    .textinput {
+        min-width: unset;
+    }
+    .mobilemenu {
+        display: block;
+    }
+    .buttons, .desktopmenu {
+        display: none;
+    }
+    .logocontainer > *:not(:last-child) {
+        margin: unset;
+    }
+
+    .container {
+        width: 100%;
+    }
+}
