@@ -43,18 +43,21 @@ class Nav extends React.Component {
     }
 
     componentDidMount = async () => {
-        await new Promise(resolve => setTimeout(resolve, 700));
-        let { apps } = await AppsProvider.getApps();
-        if (apps) {
-            this.setState({
-                apps: apps
-            });
+        if (this.props.appsSearch) {
+            await new Promise(resolve => setTimeout(resolve, 700));
+            let { apps } = await AppsProvider.getApps();
+            if (apps) {
+                this.setState({
+                    apps: apps
+                });
+            }
         }
     }
 
     render() {
         let showSuggestions = false;
-        if (this.state.suggestions !== null && this.state.suggestions.length > 0) showSuggestions = true;
+        let suggestions = this.props.suggestions ?? this.state.suggestions;
+        if (suggestions !== null && suggestions.length > 0) showSuggestions = true;
         if (!this.state.hasFocus) showSuggestions = false;
         return (
             <div className={styles.centerWrapper} onBlur={(event) => {
@@ -70,17 +73,18 @@ class Nav extends React.Component {
                             <div
                                 className={styles.logo}
                                 style={{
-                                    background: "url('/cdn/images/logos/logo.png')"
+                                    background: `url(${this.props.iconUrl ?? '/cdn/images/logos/logo.png'})`
                                 }}
                                 href="/"
                             />
                             <div className={styles.desktopmenu}>
-                                <Button text="Microart" style={{
+                                <Button text={this.props.title ?? "Microart"} style={{
                                     fontFamily: "Montserrat",
                                     textTransform: "uppercase",
                                     fontWeight: "bold",
                                     fontSize: "1.1em",
-                                    color: "#727AD6"
+                                    color: "#727AD6",
+                                    ...this.props.titleStyle
                                 }} outline />
                             </div>
                         </div>
@@ -98,8 +102,8 @@ class Nav extends React.Component {
                                 <span>Search...</span>
                             </div>
                         }
-                        value={this.state.search}
-                        onChange={(e) => {
+                        value={this.props.search ?? this.state.search}
+                        onChange={this.props.searchOnChange ?? ((e) => {
                             let value = e.target.value;
                             let appsByName = [];
                             if (value !== "") {
@@ -109,18 +113,22 @@ class Nav extends React.Component {
                                 suggestions: appsByName,
                                 search: value
                             });
-                        }}
+                        })}
                     />
                     <div className={styles.buttons}>
                         {/*
                     <Button text="Login" primary outline />
                     <Button text="Sign up" outline />
                     */}
-                        <Button text="Quran" href="/showroom/quran" />
-                        <Button text="Sailscript" href="/showroom/sailscript" />
-                        <Button text="AutoIconifier" href="/showroom/autoiconifier" />
-                        <Button text="Apps" href="/apps" />
-                        <Button text="Contact" href="mailto:contact@microart.cf" />
+                        {this.props.buttons ?? (
+                            <>
+                                <Button text="Quran" href="/showroom/quran" />
+                                <Button text="Sailscript" href="/showroom/sailscript" />
+                                <Button text="AutoIconifier" href="/showroom/autoiconifier" />
+                                <Button text="Apps" href="/apps" />
+                                <Button text="Contact" href="mailto:contact@microart.cf" />
+                            </>
+                        )}
                     </div>
                     <div className={styles.mobilemenu}>
                         <IoReorderTwoOutline />
@@ -136,12 +144,12 @@ class Nav extends React.Component {
                                 <div
                                     className={styles.logo}
                                     style={{
-                                        background: "url('/cdn/images/logos/logo.png')"
+                                        background: `url(${this.props.iconUrl ?? '/cdn/images/logos/logo.png'})`
                                     }}
                                     href="/"
                                 />
                                 <div className={styles.desktopmenu}>
-                                    <Button text="Microart" style={{
+                                    <Button text={this.props.title ?? "Microart"} style={{
                                         fontFamily: "Montserrat",
                                         textTransform: "uppercase",
                                         fontWeight: "bold",
@@ -158,31 +166,38 @@ class Nav extends React.Component {
                             <span className={styles.tinytext}>Search Results</span>
                             <div className={styles.thinDivider} />
                             <div>
-                                {this.state.suggestions?.map((app) => {
-                                    return (
-                                        <div
-                                            key={app.id}
-                                            className={styles.suggestion}
-                                            onClick={() => {
-                                                this.props.router.push(`/apps/${app.id}`);
-                                            }}
-                                        >
-                                            <img src={app.iconUrl} className={styles.suggestionimage} />
-                                            <div className={styles.suggestioninfo}>
-                                                <h3>{app.name}</h3>
-                                                <span>{app.category.name}</span>
+                                {this.props.suggestionsRaw ?? (
+                                    suggestions?.map((app) => {
+                                        return (
+                                            <div
+                                                key={app.id}
+                                                className={styles.suggestion}
+                                                onClick={() => {
+                                                    this.props.router.push(`/apps/${app.id}`);
+                                                }}
+                                            >
+                                                <img src={app.iconUrl} className={styles.suggestionimage} />
+                                                <div className={styles.suggestioninfo}>
+                                                    <h3>{app.name}</h3>
+                                                    <span>{app.category.name}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    );
-                                })}
+                                        );
+                                    })
+                                )}
                             </div>
                         </Flex>
                         <div className={styles.hidden}>
                             <div className={styles.buttons}>
-                                <Button text="Quran" href="/showroom/quran" />
-                                <Button text="Apps" href="/apps" />
-                                <Button text="About" />
-                                <Button text="Contact" />
+                                {this.props.buttons ?? (
+                                    <>
+                                        <Button text="Quran" href="/showroom/quran" />
+                                        <Button text="Sailscript" href="/showroom/sailscript" />
+                                        <Button text="AutoIconifier" href="/showroom/autoiconifier" />
+                                        <Button text="Apps" href="/apps" />
+                                        <Button text="Contact" href="mailto:contact@microart.cf" />
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>
