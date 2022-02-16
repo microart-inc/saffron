@@ -38,6 +38,7 @@ export default class Image extends React.Component {
             return (
                 <div
                     style={style}
+                    className={this.props.className}
                 />
             );
         }
