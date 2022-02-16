@@ -1,8 +1,22 @@
 .centerWrapper {
     width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+.centerWrapper > * {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.centerWrapper::before {
+    content: "";
+    display: block;
+    height: 60px;
+    width: 100vw;
+    grid-row: 1;
+    grid-column: 1;
 }
 
 .container {
@@ -13,19 +27,19 @@
     align-items: stretch;
     padding: 15px;
     box-sizing: border-box;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    background: rgba(255,255,255,0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px) saturate(2);
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 99999999999999999999999;
 }
 
-.container > div:last-child > .button {
+.container>div:last-child>.button {
     margin-right: 13px;
 }
 
-.container > div:last-child > .button:last-child {
+.container>div:last-child>.button:last-child {
     margin: 0;
 }
 
@@ -35,6 +49,7 @@
     align-items: center;
     transition: transform 70ms linear;
 }
+
 .logo {
     height: 25px;
     width: 25px;
@@ -53,12 +68,12 @@
     align-items: center;
 }
 
-.searchplaceholder > * {
+.searchplaceholder>* {
     color: gray;
     font-size: 0.85em;
 }
 
-.searchplaceholder > *:not(:last-child) {
+.searchplaceholder>*:not(:last-child) {
     margin-right: 4px;
 }
 
@@ -69,13 +84,15 @@
 .mobilemenu {
     display: none;
 }
-.mobilemenu > svg {
+
+.mobilemenu>svg {
     aspect-ratio: 1/1;
     height: 100%;
     width: auto;
-    color: rgb(100,100,100);
+    color: rgb(100, 100, 100);
 }
-.logocontainer > *:not(:last-child) {
+
+.logocontainer>*:not(:last-child) {
     margin-right: 10px;
 }
 
@@ -91,7 +108,7 @@
     top: 70px;
     display: flex;
     z-index: 10000000;
-    justify-content: space-evenly ;
+    justify-content: space-evenly;
 }
 
 .suggestionsWrapper {
@@ -117,7 +134,7 @@
 
 .thinDivider {
     width: 100%;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin: 3px 0;
 }
 
@@ -129,8 +146,9 @@
     gap: 1em;
     background: transparent;
 }
+
 .suggestion:hover {
-    background: rgba(0,0,0,0.03);
+    background: rgba(0, 0, 0, 0.03);
     cursor: pointer;
 }
 
@@ -141,11 +159,11 @@
 
 .suggestion h3 {
     margin: 0;
-    color: rgb(60,60,60);
+    color: rgb(60, 60, 60);
 }
 
 .suggestion span {
-    color: rgb(160,160,160);
+    color: rgb(160, 160, 160);
     font-size: 0.8em;
 }
 
@@ -153,20 +171,23 @@
     width: 60px;
     height: 60px;
     border-radius: 22.7%;
-    border: 1px solid rgba(0,0,0,0.07);
+    border: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 @media screen and (max-width: 800px) {
     .textinput {
         min-width: unset;
     }
+
     .mobilemenu {
         display: block;
     }
+
     .buttons, .desktopmenu {
         display: none;
     }
-    .logocontainer > *:not(:last-child) {
+
+    .logocontainer>*:not(:last-child) {
         margin: unset;
     }
 
