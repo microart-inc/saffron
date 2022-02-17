@@ -13,6 +13,7 @@ class Button extends React.Component {
         if (this.props.shadow) classes.push(styles.shadow);
         if (this.props.invert) classes.push(styles.invert);
         if (this.props.disabled) classes.push(styles.disabled);
+        if (this.props.min) classes.push(styles.min);
         let text = this.props.text ? this.props.text : this.props.children;
         return (
             <button

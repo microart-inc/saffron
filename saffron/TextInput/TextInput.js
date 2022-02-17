@@ -48,7 +48,7 @@ export default class TextInput extends React.Component {
                     </div>
                 ) : null}
                 <input
-                    type="text"
+                    type={this.props.type ?? "text"}
                     ref={this.props.saffronRef}
                     className={classes.join(' ')}
                     style={style}
