@@ -33,6 +33,9 @@ export default class Flex extends React.Component {
                     if (this.props.onClick) this.props.onClick();
                 }}
                 tabIndex={this.props.tabIndex}
+                ref={(a) => {
+                    this.props.xRef && this.props.xRef(a);
+                }}
             >
                 {this.props.children}
             </div>

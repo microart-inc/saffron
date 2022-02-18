@@ -11,8 +11,9 @@
 
 .textinput:focus {
     outline: none;
-    border-color: black;
+    border-color: var(--textinput-hover-color);
 }
+
 
 .placeholder {
     display: grid;
@@ -47,6 +48,6 @@
 
 .disabled {
     cursor: not-allowed;
-    background: rgb(245,245,245);
-    border: 1px solid rgb(230,230,230);
+    background: rgb(245, 245, 245);
+    border: 1px solid rgb(230, 230, 230);
 }

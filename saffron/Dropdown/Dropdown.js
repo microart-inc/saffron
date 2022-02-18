@@ -101,7 +101,7 @@ export default class Dropdown extends React.Component {
                     row
                     align="center"
                 >
-                    <span className={styles.dropdownText}>Choose a category</span>
+                    <span className={styles.dropdownText}>{this.props.value ?? "Saffron Dropdown"}</span>
                     <Flex
                         column
                         className={styles.arrowContainer}

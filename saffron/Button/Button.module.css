@@ -1,28 +1,29 @@
 .button {
     background: none;
     border: none;
-    color: gray;
+    color: var(--button-text-color);
     font-size: 0.9em;
     cursor: pointer;
+    transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background 0.2s ease-in-out;
 }
 
-.button:hover {
-    color: rgb(70,70,70);
+.button:not(.disabled):hover {
+    color: var(--button-hover-color);
 }
 
 .button.primary:not(.outline) {
-    transition: border-color 0.2s linear;
-    background: black;
-    color: lightgray;
+    background: var(--button-primary-color);
+    color: var(--button-primary-text-color);
     padding: 7px 14px;
     border-radius: 5px;
+    min-height: 33px;
 }
 
 .button.primary.outline {
-    transition: border-color 0.2s linear;
     border: 1px solid rgba(0,0,0,0.1);
     padding: 7px 14px;
     border-radius: 5px;
+    min-height: 33px;
 }
 
 
@@ -35,11 +36,12 @@
 }
 
 .button.primary:not(.outline,.disabled):hover {
-    background: rgb(40,40,40);
+    background: var(--button-primary-hover-color);
 }
 
 .button.primary.outline:not(.disabled):hover {
-    border-color: black;
+    border-color: var(--button-hover-color);
+    color: var(--button-hover-color);
 }
 
 .shadow {
