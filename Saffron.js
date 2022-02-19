@@ -12,6 +12,7 @@ import TextInput from "./saffron/TextInput/TextInput";
 import FileUpload from './saffron/FileUpload/FileUpload';
 import Dropdown from './saffron/Dropdown/Dropdown';
 import Checkbox from './saffron/Checkbox/Checkbox';
+import Hint from "./saffron/Hint/Hint";
 
 export {
     Button,
@@ -27,5 +28,6 @@ export {
     TextInput,
     FileUpload,
     Dropdown,
-    Checkbox
+    Checkbox,
+    Hint
 }

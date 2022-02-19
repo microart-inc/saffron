@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './Button.module.css';
 import { withRouter } from 'next/router';
+import Hint from '../Hint/Hint';
 
 class Button extends React.Component {
-    render() {
+    button() {
         var classes = [styles.button];
         if (this.props.primary) classes.push(styles.primary);
         if (this.props.outline) classes.push(styles.outline);
@@ -30,6 +31,19 @@ class Button extends React.Component {
                     }
                 }}
             >{text}</button>
+        );
+    }
+
+    render() {
+        return (this.props.hint ?
+            (
+                <Hint
+                    content={this.props.hint}
+                >
+                    {this.button()}
+                </Hint>
+            ) :
+            this.button()
         );
     }
 }

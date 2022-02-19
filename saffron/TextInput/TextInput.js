@@ -1,4 +1,5 @@
 import React from 'react';
+import Hint from '../Hint/Hint';
 import styles from './TextInput.module.css';
 
 export default class TextInput extends React.Component {
@@ -18,7 +19,7 @@ export default class TextInput extends React.Component {
         });
     }
 
-    render() {
+    input() {
         var classes = [styles.textinput];
         if (this.props.disabled) classes.push(styles.disabled);
         let style = null;
@@ -66,5 +67,14 @@ export default class TextInput extends React.Component {
                 />
             </div>
         );
+    }
+
+    render() {
+        return (this.props.hint ?
+            (
+                <Hint content={this.props.hint}>
+                    {this.input()}
+                </Hint>
+            ) : this.input());
     }
 }

@@ -13,6 +13,10 @@ export default class Heading extends React.Component {
         let style = {
             fontSize: this.props.fontSize,
             fontFamily: this.props.font,
+            color: this.props.color,
+            fontWeight: this.props.fontWeight,
+            textAlign: this.props.align,
+            margin: this.props.margin,
             ...this.props.style
         };
         if (this.context.isMobile && this.props.mobile) style = {...style, ...this.props.mobile};
