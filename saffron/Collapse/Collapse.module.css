@@ -1,0 +1,38 @@
+.header {
+    cursor: pointer;
+    align-self: flex-start;
+    padding: 6px 10px;
+    border-radius: 7px;
+}
+
+.headerHover:hover {
+    background: rgb(240,240,240);
+    color: var(--accent-color);
+}
+
+.headerHover:active {
+    background: rgb(220,220,220);
+}
+
+[opened] .header {
+    color: var(--accent-color);
+}
+
+.borderLeft {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    margin-left: 16px;
+    padding-left: 20px;
+}
+
+.contentBlock {
+    background: rgb(250, 250, 250);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+}

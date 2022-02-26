@@ -10,9 +10,12 @@ import Showcase from "./saffron/Showcase/Showcase";
 import Spacer from "./saffron/Spacer/Spacer";
 import TextInput from "./saffron/TextInput/TextInput";
 import FileUpload from './saffron/FileUpload/FileUpload';
-import Dropdown from './saffron/Dropdown/Dropdown';
+import Dropdown from './saffron/Dropdown2/Dropdown2';
 import Checkbox from './saffron/Checkbox/Checkbox';
 import Hint from "./saffron/Hint/Hint";
+import Collapse from './saffron/Collapse/Collapse';
+import Popover from './saffron/Popover/Popover';
+import Loader from "./saffron/Loader/Loader";
 
 export {
     Button,
@@ -29,5 +32,8 @@ export {
     FileUpload,
     Dropdown,
     Checkbox,
-    Hint
+    Hint,
+    Collapse,
+    Popover,
+    Loader
 }
