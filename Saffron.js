@@ -16,6 +16,8 @@ import Hint from "./saffron/Hint/Hint";
 import Collapse from './saffron/Collapse/Collapse';
 import Popover from './saffron/Popover/Popover';
 import Loader from "./saffron/Loader/Loader";
+import Modal from "./saffron/Modal/Modal";
+import PopupModal from "./saffron/PopupModal/PopupModal";
 
 export {
     Button,
@@ -35,5 +37,7 @@ export {
     Hint,
     Collapse,
     Popover,
-    Loader
+    Loader,
+    Modal,
+    PopupModal
 }
