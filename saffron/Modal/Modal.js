@@ -1,6 +1,8 @@
 import React from "react";
 import Modal from 'react-modal';
 import Flex from "../Flex/Flex";
+import c from "../../CustomClass";
+import styles from './Modal.module.css';
 Modal.setAppElement('#__next');
 Modal.defaultStyles = {
     overlay: {
@@ -61,22 +63,16 @@ export default class ModalEx extends React.Component {
 
     render() {
         return (
-            <Modal 
+            <Modal
                 isOpen={this.props.isOpen}
                 onRequestClose={this.props.onOuterClick}
                 contentLabel="ModalD ASDs"
-                className={this.props.className}
+                className={c(this.props.className, styles.content)}
                 style={this.props.style}
                 onAfterOpen={this.props.onAfterOpen}
             >
                 {this.props.raw ? this.props.children : (
-                    <Flex style={{
-                        background: "white",
-                        borderRadius: 9,
-                        overflow: "hidden"
-                    }}>
-                        {this.props.children}
-                    </Flex>
+                    this.props.children
                 )}
             </Modal>
         );

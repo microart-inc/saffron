@@ -1,0 +1,12 @@
+.content {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 8px 60px rgba(0, 0, 0, 0.4), 0px 6px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    box-sizing: border-box;
+}
+
+.content:focus-visible {
+    outline: none;
+}

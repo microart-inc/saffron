@@ -17,7 +17,7 @@ export default class PopupModal extends React.Component {
                 }}>
                     {this.props.display}
                 </div >
-                <Modal isOpen={this.state.isOpen} onOuterClick={() => {
+                <Modal className={this.props.className} isOpen={this.state.isOpen} onOuterClick={() => {
                     console.log("DSA");
                     this.setState({ isOpen: false });
                 }}>
