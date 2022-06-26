@@ -12,7 +12,7 @@ export default class Footer extends React.Component {
                         alt=""
                     />
                 )}
-                <span>©2021 Microart Inc. All Rights Reserved. </span>
+                <span>©{(new Date()).getFullYear()} Microart Inc. All Rights Reserved. </span>
                 <span>'Microart', 'Microart Cloud', and 'Deliver' are not registered trademarks of Microart Inc but please dont use them :)</span>
             </div>
         );
