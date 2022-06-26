@@ -1,0 +1,42 @@
+html {
+    overflow-x: hidden;
+    --accent-color: #4f77dc;
+    --accent-color-dark: #394ec6;
+
+    --button-text-color: gray;
+    --button-primary-text-color: white;
+    --button-hover-color: var(--accent-color);
+    --button-primary-color: var(--accent-color);
+    --button-primary-hover-color: #4151ab;
+
+    --textinput-hover-color: var(--accent-color);
+}
+
+::selection {
+    background: var(--accent-color);
+    color: white;
+}
+
+body {
+    margin: 0;
+}
+
+body, button, input {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.link {
+    color: var(--accent-color);
+    text-decoration: underline dotted;
+    cursor: pointer;
+}
+
+code {
+    font-size: 0.9em;
+    font-family: "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, monospace;
+    background: rgba(30, 30, 60, 0.1);
+    padding: 3px 12px;
+    border-radius: 4px;
+}
