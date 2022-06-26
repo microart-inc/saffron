@@ -7,7 +7,7 @@ export default class Footer extends React.Component {
             <div className={styles.container}>
                 {this.props.icon ?? (
                     <img
-                        src={this.props.iconURL ?? "/cdn/images/logo.svg"}
+                        src={this.props.iconUrl ?? "/cdn/images/logo.svg"}
                         style={this.props.iconStyle}
                         alt=""
                     />
