@@ -42,22 +42,10 @@ class Nav extends React.Component {
         };
     }
 
-    componentDidMount = async () => {
-        if (this.props.appsSearch) {
-            await new Promise(resolve => setTimeout(resolve, 700));
-            let { apps } = await AppsProvider.getApps();
-            if (apps) {
-                this.setState({
-                    apps: apps
-                });
-            }
-        }
-    }
-
     render() {
         let showSuggestions = false;
         let suggestions = this.props.suggestions ?? this.state.suggestions;
-        if (suggestions !== null && suggestions.length > 0) showSuggestions = true;
+        if (suggestions !== null && suggestions.length > 0 || this.props.suggestionsRaw) showSuggestions = true;
         if (!this.state.hasFocus) showSuggestions = false;
         return (
             <div className={styles.centerWrapper} onBlur={(event) => {
@@ -72,18 +60,22 @@ class Nav extends React.Component {
                         <div className={styles.logocontainer}>
                             <div
                                 className={styles.logo}
-                                style={{
-                                    background: `url(${this.props.iconUrl ?? '/cdn/images/logos/logo.png'})`
-                                }}
+                                style={this.props.iconUrl ? ({
+                                    background: `url('${this.props.iconUrl}')`
+                                }) : ({
+                                    border: '2px dashed gray',
+                                    borderRadius: 100,
+                                    background: 'rgba(0,0,0,0.1)'
+                                })}
                                 href="/"
                             />
                             <div className={styles.desktopmenu}>
-                                <Button text={this.props.title ?? "Microart"} style={{
+                                <Button text={this.props.title ?? "Saffron Nav"} style={{
                                     fontFamily: "Montserrat",
                                     textTransform: "uppercase",
                                     fontWeight: "bold",
                                     fontSize: "1.1em",
-                                    color: "#727AD6",
+                                    color: "black",
                                     ...this.props.titleStyle
                                 }} outline />
                             </div>
@@ -122,11 +114,9 @@ class Nav extends React.Component {
                     */}
                         {this.props.buttons ?? (
                             <>
-                                <Button text="Quran" href="/showroom/quran" />
-                                <Button text="Sailscript" href="/showroom/sailscript" />
-                                <Button text="AutoIconifier" href="/showroom/autoiconifier" />
-                                <Button text="Apps" href="/apps" />
-                                <Button text="Contact" href="mailto:contact@microart.cf" />
+                                <Button text="Sample Button" />
+                                <Button text="Sample Button" />
+                                <Button text="Sample Button" />
                             </>
                         )}
                     </div>
@@ -191,11 +181,9 @@ class Nav extends React.Component {
                             <div className={styles.buttons}>
                                 {this.props.buttons ?? (
                                     <>
-                                        <Button text="Quran" href="/showroom/quran" />
-                                        <Button text="Sailscript" href="/showroom/sailscript" />
-                                        <Button text="AutoIconifier" href="/showroom/autoiconifier" />
-                                        <Button text="Apps" href="/apps" />
-                                        <Button text="Contact" href="mailto:contact@microart.cf" />
+                                        <Button text="Sample Button" />
+                                        <Button text="Sample Button" />
+                                        <Button text="Sample Button" />
                                     </>
                                 )}
                             </div>
