@@ -19,6 +19,7 @@ import Loader from "./saffron/Loader/Loader";
 import Modal from "./saffron/Modal/Modal";
 import PopupModal from "./saffron/PopupModal/PopupModal";
 import ThemeConfig from "./saffron/ThemeConfig/ThemeConfig";
+import Title from "./saffron/Title/Title";
 import "./Saffron.global.css";
 import "./Saffron.colors.css";
 
@@ -43,5 +44,6 @@ export {
     Loader,
     Modal,
     PopupModal,
-    ThemeConfig
+    ThemeConfig,
+    Title
 }

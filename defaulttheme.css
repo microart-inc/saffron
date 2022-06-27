@@ -10,11 +10,14 @@ html {
     --button-primary-hover-color: #4151ab;
 
     --textinput-hover-color: var(--accent-color);
+
+    --text-selection-color: var(--accent-color);
+    --text-selection-text-color: white;
 }
 
 ::selection {
-    background: var(--accent-color);
-    color: white;
+    background: var(--text-selection-color);
+    color: var(--text-selection-text-color);
 }
 
 body {

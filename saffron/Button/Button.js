@@ -21,17 +21,36 @@ class Button extends React.Component {
                 className={classes.join(' ')}
                 primary="primary"
                 style={style}
-                onClick={() => {
-                    if (!this.props.disabled) {
-                        if (this.props.onClick) {
-                            this.props.onClick();
-                        } else if (this.props.href) {
-                            this.props.router.push(this.props.href);
-                        }
-                    }
-                }}
+                onClick={(e) => this.doClick(e, false)}
+                onMouseDown={(e) => this.doClick(e, true)}
             >{text}</button>
         );
+    }
+
+    doClick = (e, isAux) => {
+        if (!this.props.disabled) {
+            // Make sure button is enabled
+            if (this.props.onClick) {
+                // If a callback is provided, call it
+                if (isAux && e.button === 1) {
+                    // If the click is an aux click, check wether it is wanted
+                    if (this.props.captureAux) {
+                        this.props.onClick(e);
+                    }
+                } else {
+                    this.props.onClick(e);
+                }
+            } else if (this.props.href) {
+                // No callback provided, but a href is, so redirect to the href
+                if (!isAux && e.button === 0 && e.ctrlKey === true) {
+                    window.open(this.props.href);
+                } else if (isAux && e.button === 1) {
+                    window.open(this.props.href);
+                } else if (!isAux) {
+                    this.props.router.push(this.props.href);
+                }
+            }
+        }
     }
 
     render() {

@@ -8,9 +8,9 @@ import Link from 'next/link';
 import { withRouter } from 'next/router';
 import {
     IoReorderTwoOutline,
-    IoSearchOutline
+    IoSearchOutline,
+    IoCloseOutline
 } from 'react-icons/io5';
-import AppsProvider from '../../AppsProvider';
 import Flex from '../Flex/Flex';
 
 class Nav extends React.Component {
@@ -120,10 +120,30 @@ class Nav extends React.Component {
                             </>
                         )}
                     </div>
-                    <div className={styles.mobilemenu}>
-                        <IoReorderTwoOutline />
+                    <div
+                        className={styles.mobilemenu}
+                    >
+                        {this.state.mobileMenu ? (
+                            <IoCloseOutline onClick={() => {
+                                this.setState({
+                                    mobileMenu: false
+                                });
+                            }} />
+                        ) : (
+                            <IoReorderTwoOutline onClick={() => {
+                                this.setState({
+                                    mobileMenu: true
+                                });
+                            }} />
+                        )}
                     </div>
                 </div>
+
+                {this.state.mobileMenu ? (
+                    <div className={styles.mobileWrapper}>
+                        {this.props.buttons}
+                    </div>
+                ) : null}
 
                 {showSuggestions ? (
                     <div

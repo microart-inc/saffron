@@ -26,6 +26,7 @@ export default class ThemeConfig extends React.Component {
         if (this.props.buttonPrimaryHoverColor) style['--button-primary-hover-color'] = this.props.buttonPrimaryHoverColor;
         if (this.props.textInputHoverColor) style['--textinput-hover-color'] = this.props.textInputHoverColor;
         if (this.props.textSelectionColor) style['--text-selection-color'] = this.props.textSelectionColor;
+        if (this.props.textSelectionTextColor) style['--text-selection-text-color'] = this.props.textSelectionTextColor;
         return (
             <div
                 style={style}
