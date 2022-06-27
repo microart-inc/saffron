@@ -24,6 +24,7 @@ export default class Checkbox extends React.Component {
                 align="center"
                 gap="0.3em"
                 style={this.props.style}
+                className={this.props.className}
             >
                 {
                     direction === "right" ? (
