@@ -1,5 +1,5 @@
 .checkbox {
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid var(--accent-color);
     min-width: 1em;
     min-height: 1em;
     border-radius: 4px;
@@ -9,15 +9,15 @@
 }
 
 .checkbox:hover {
-    border-color: rgb(40,40,40);
+    border-color: var(--accent-color-dark);
 }
 
 .checkbox.checked:hover {
-    background: rgb(40,40,40);
+    background: var(--accent-color-dark);
 }
 
 .checked {
-    background: black;
+    background: var(--accent-color);
 }
 
 .disabled {
@@ -40,6 +40,6 @@
 }
 
 .faint {
-    color: rgb(60,60,60);
+    color: rgb(60, 60, 60);
     font-size: 0.85em;
 }

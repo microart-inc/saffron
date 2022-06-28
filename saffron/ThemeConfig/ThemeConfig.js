@@ -16,6 +16,8 @@ export default class ThemeConfig extends React.Component {
 
     --text-selection-color: var(--accent-color);
         */
+       /*
+       */
         let style = {};
         if (this.props.accentColor) style['--accent-color'] = this.props.accentColor;
         if (this.props.accentColorDark) style['--accent-color-dark'] = this.props.accentColorDark;
