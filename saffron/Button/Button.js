@@ -23,6 +23,7 @@ class Button extends React.Component {
                 style={style}
                 onClick={(e) => this.doClick(e, false)}
                 onMouseDown={(e) => this.doClick(e, true)}
+                ref={(ref) => { if (this.props.xRef) this.props.xRef(ref); }}
             >{text}</button>
         );
     }

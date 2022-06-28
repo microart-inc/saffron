@@ -40,6 +40,7 @@ class Nav extends React.Component {
             suggestions: null,
             hasFocus: false
         };
+
     }
 
     render() {
@@ -82,6 +83,7 @@ class Nav extends React.Component {
                         </div>
                     </Link>
                     <TextInput
+                        divRef={(ref) => { this.searchRef = ref; }}
                         onFocus={() => {
                             this.setState({
                                 hasFocus: true
@@ -146,69 +148,42 @@ class Nav extends React.Component {
                 ) : null}
 
                 {showSuggestions ? (
-                    <div
-                        className={styles.absoluteCenter}
+                    <Flex
+                        column
+                        className={styles.suggestionsWrapper}
+                        style={{
+                            left: this.searchRef.offsetLeft - ((400 - this.searchRef.offsetWidth) / 2)
+                        }}
+                        mobile={{
+                            left: 0,
+                            margin: "0 10px",
+                            width: "calc(100vw - 20px)"
+                        }}
                     >
-                        <div className={styles.hidden}>
-                            <div className={styles.logocontainer}>
-                                <div
-                                    className={styles.logo}
-                                    style={{
-                                        background: `url(${this.props.iconUrl ?? '/cdn/images/logos/logo.png'})`
-                                    }}
-                                    href="/"
-                                />
-                                <div className={styles.desktopmenu}>
-                                    <Button text={this.props.title ?? "Microart"} style={{
-                                        fontFamily: "Montserrat",
-                                        textTransform: "uppercase",
-                                        fontWeight: "bold",
-                                        fontSize: "1.1em",
-                                        color: "#727AD6"
-                                    }} outline />
-                                </div>
-                            </div>
-                        </div>
-                        <Flex
-                            column
-                            className={styles.suggestionsWrapper}
-                        >
-                            <span className={styles.tinytext}>Search Results</span>
-                            <div className={styles.thinDivider} />
-                            <div>
-                                {this.props.suggestionsRaw ?? (
-                                    suggestions?.map((app) => {
-                                        return (
-                                            <div
-                                                key={app.id}
-                                                className={styles.suggestion}
-                                                onClick={() => {
-                                                    this.props.router.push(`/apps/${app.id}`);
-                                                }}
-                                            >
-                                                <img src={app.iconUrl} className={styles.suggestionimage} />
-                                                <div className={styles.suggestioninfo}>
-                                                    <h3>{app.name}</h3>
-                                                    <span>{app.category.name}</span>
-                                                </div>
+                        <span className={styles.tinytext}>Search Results</span>
+                        <div className={styles.thinDivider} />
+                        <div>
+                            {this.props.suggestionsRaw ?? (
+                                suggestions?.map((app) => {
+                                    return (
+                                        <div
+                                            key={app.id}
+                                            className={styles.suggestion}
+                                            onClick={() => {
+                                                this.props.router.push(`/apps/${app.id}`);
+                                            }}
+                                        >
+                                            <img src={app.iconUrl} className={styles.suggestionimage} />
+                                            <div className={styles.suggestioninfo}>
+                                                <h3>{app.name}</h3>
+                                                <span>{app.category.name}</span>
                                             </div>
-                                        );
-                                    })
-                                )}
-                            </div>
-                        </Flex>
-                        <div className={styles.hidden}>
-                            <div className={styles.buttons}>
-                                {this.props.buttons ?? (
-                                    <>
-                                        <Button text="Sample Button" />
-                                        <Button text="Sample Button" />
-                                        <Button text="Sample Button" />
-                                    </>
-                                )}
-                            </div>
+                                        </div>
+                                    );
+                                })
+                            )}
                         </div>
-                    </div>
+                    </Flex>
                 ) : null}
 
             </div>

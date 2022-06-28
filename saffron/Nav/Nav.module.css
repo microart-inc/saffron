@@ -116,9 +116,12 @@
     padding: 8px 0px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
     background: white;
-    min-width: 400px;
+    width: 400px;
     border-radius: 5px;
     align-items: stretch;
+    position: fixed;
+    top: 70px;
+    z-index: 10000000;
 }
 
 .hidden {

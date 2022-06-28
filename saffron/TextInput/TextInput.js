@@ -38,7 +38,7 @@ export default class TextInput extends React.Component {
         var showPlaceholder = this.props.value ? this.props.value === "" : this.state.value === "";
         classes.push(styles.transparent);
         return (
-            <div className={styles.placeholder} style={this.props.rootStyle}>
+            <div className={styles.placeholder} style={this.props.rootStyle} ref={(ref) => { if (this.props.divRef) this.props.divRef(ref) }}>
                 {showPlaceholder ? (
                     <div className={styles.center}>
                         {this.props.placeholder ?

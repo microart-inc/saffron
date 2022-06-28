@@ -5,7 +5,8 @@ export default class AppContextProvider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isMobile: typeof window !== 'undefined' ? window.innerWidth < 800 : this.props.isMobileView
+            isMobile: typeof window !== 'undefined' ? window.innerWidth < 800 : this.props.isMobileView,
+            ...this.props.value
         };
     }
 
