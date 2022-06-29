@@ -1,6 +1,10 @@
 import React from 'react';
+import AppContext from '../../AppContext';
 
 export default class ThemeConfig extends React.Component {
+
+    static contextType = AppContext;
+
     render() {
         /*
  --accent-color: #4f77dc;
@@ -16,8 +20,8 @@ export default class ThemeConfig extends React.Component {
 
     --text-selection-color: var(--accent-color);
         */
-       /*
-       */
+        /*
+        */
         let style = {};
         if (this.props.accentColor) style['--accent-color'] = this.props.accentColor;
         if (this.props.accentColorDark) style['--accent-color-dark'] = this.props.accentColorDark;
@@ -29,9 +33,16 @@ export default class ThemeConfig extends React.Component {
         if (this.props.textInputHoverColor) style['--textinput-hover-color'] = this.props.textInputHoverColor;
         if (this.props.textSelectionColor) style['--text-selection-color'] = this.props.textSelectionColor;
         if (this.props.textSelectionTextColor) style['--text-selection-text-color'] = this.props.textSelectionTextColor;
+        style = {
+            ...style,
+            ...this.props.style,
+        };
+        if (this.context.isMobile) style = { ...style, ...this.props.mobile };
         return (
             <div
                 style={style}
+                className={this.props.className}
+                ref={(ref) => this.props.xRef && this.props.xRef(ref)}
             >
                 {this.props.children}
             </div>
