@@ -5,7 +5,7 @@
     font-size: 0.9em;
     cursor: pointer;
     transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background 0.2s ease-in-out;
-    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
 .button:not(.disabled):hover {
@@ -21,7 +21,7 @@
 }
 
 .button.primary.outline {
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 7px 14px;
     border-radius: 5px;
     min-height: 33px;
@@ -36,7 +36,11 @@
     cursor: not-allowed;
 }
 
-.button.primary:not(.outline,.disabled):hover {
+.button.primary.disabled {
+    background: var(--button-primary-disabled-color);
+}
+
+.button.primary:not(.outline, .disabled):hover {
     background: var(--button-primary-hover-color);
 }
 

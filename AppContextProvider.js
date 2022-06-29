@@ -6,7 +6,6 @@ export default class AppContextProvider extends React.Component {
         super(props);
         this.state = {
             isMobile: typeof window !== 'undefined' ? window.innerWidth < 800 : this.props.isMobileView,
-            ...this.props.value
         };
     }
 
@@ -31,7 +30,10 @@ export default class AppContextProvider extends React.Component {
     render() {
         return (
             <AppContext.Provider
-                value={this.state}
+                value={{
+                    ...this.state,
+                    ...this.props.value
+                }}
             >
                 {this.props.children}
             </AppContext.Provider>

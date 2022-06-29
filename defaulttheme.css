@@ -1,13 +1,20 @@
 html {
     overflow-x: hidden;
+    /*
     --accent-color: #4f77dc;
     --accent-color-dark: #394ec6;
+    */
+    --accent-color: #6c93d5;
+    --accent-color-muted: #adc2e7;
+    --accent-color-dark: #737ed6;
 
     --button-text-color: gray;
     --button-primary-text-color: white;
     --button-hover-color: var(--accent-color);
     --button-primary-color: var(--accent-color);
-    --button-primary-hover-color: #4151ab;
+    /*--button-primary-hover-color: #4151ab;*/
+    --button-primary-hover-color: var(--accent-color-dark);
+    --button-primary-disabled-color: var(--accent-color-muted);
 
     --textinput-hover-color: var(--accent-color);
 
@@ -42,4 +49,13 @@ code {
     background: rgba(30, 30, 60, 0.1);
     padding: 3px 12px;
     border-radius: 4px;
+}
+
+#nprogress {
+    z-index: 9999999999999999999999999999999999999999999999;
+    position: fixed;
+}
+
+#nprogress .spinner:not(#a) {
+    display: none;
 }

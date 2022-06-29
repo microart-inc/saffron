@@ -38,7 +38,7 @@ class Button extends React.Component {
                     if (this.props.captureAux) {
                         this.props.onClick(e);
                     }
-                } else {
+                } else if (!isAux) {
                     this.props.onClick(e);
                 }
             } else if (this.props.href) {
