@@ -18,6 +18,7 @@ class Button extends React.Component {
         let text = this.props.text ? this.props.text : this.props.children;
         return (
             <button
+		      {...this.props}
                 className={classes.join(' ')}
                 primary="primary"
                 style={style}
