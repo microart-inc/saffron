@@ -32,7 +32,7 @@
     backdrop-filter: blur(20px) saturate(2);
     position: fixed;
     top: 0;
-    z-index: 99999999999999999999999;
+    z-index: 99999999999999999999;
 }
 
 .container>div:last-child>.button {
