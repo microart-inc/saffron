@@ -9,7 +9,7 @@ class CustomClass extends Array {
     }
 
     toString() {
-        return this.join(' ');
+        return this.join(' ').trim();
     }
 
     static didHotUpdateWarn = false;
@@ -120,5 +120,5 @@ export default function c(...array) {
     for (var i in array) {
         j.push(array[i]);
     }
-    return j.join(" ");
+    return j.join(" ").trim();
 };

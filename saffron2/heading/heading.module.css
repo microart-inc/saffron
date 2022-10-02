@@ -1,0 +1,22 @@
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.h1[margin="true"],
+.h2[margin="true"],
+.h3[margin="true"],
+.h4[margin="true"],
+.h5[margin="true"],
+.h6[margin="true"] {
+    margin: revert;
+}
+
+.h1[padding="true"],
+.h2[padding="true"],
+.h3[padding="true"],
+.h4[padding="true"],
+.h5[padding="true"],
+.h6[padding="true"] {
+    padding: revert;
+}

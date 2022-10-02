@@ -66,12 +66,12 @@ export default class Dropdown extends React.Component {
                     this.setState({ open: false });
                 }}
                 body={
-                    <div className={c(styles.options, this.props.compact ? styles.optionsCompact : "")}>
+                    <div className={c(styles.options, this.props.compact ? styles.optionsCompact : "", this.props.dropdownClassName ?? "")}>
                         {options}
                     </div>
                 }
             >
-                <Flex align="center" gap="3px" className={styles.dropdown}
+                <Flex align="center" gap="3px" className={this.props.className ? c(styles.dropdown, this.props.className) : styles.dropdown}
                     onClick={() => {
                         this.setState({ open: !this.state.open });
                     }}

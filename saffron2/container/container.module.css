@@ -1,0 +1,16 @@
+.container {
+    margin: 0 7%;
+}
+
+.containerDefault {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        margin: 0;
+        padding: 0 5px;
+    }
+}
