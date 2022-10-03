@@ -1,5 +1,8 @@
 // css inline properties to support (popular and common only)
-const properties = ['color', 'margin', 'padding', 'width', 'height', 'border', 'gap'];
+const properties = [
+    'color', 'margin', 'padding', 'width', 'height',
+    'border', 'gap', 'maxWidth', 'minWidth', 'minHeight', 'maxHeight',
+];
 // [key, style-key, default if true, should allow custom value]
 const specialProperties = [
     ['bold', 'fontWeight', 'bold'],
@@ -81,4 +84,34 @@ export function istyleParser(props) {
     });
 
     return props;
+}
+
+export function iextractChild(props, childType) {
+    if (Array.isArray(props.children)) {
+        let index = props.children.findIndex(child => child.type.prototype === childType.prototype);
+        if (index > -1) {
+            let match = props.children[index];
+            props.children.splice(index, 1);
+            if (props.children.findIndex(child => child.type.prototype === childType.prototype) > -1) {
+                throw new (() => {
+                    this.message = "You can only have one " + childType.name + " child";
+                    this.name = "ChildError";
+                })
+            }
+            return match;
+        }
+    } else if (props.children?.type.prototype === childType.prototype) {
+        let match = props.children;
+        props.children = null;
+        return match;
+    }
+    return null;
+}
+
+export function getDebugFlags(namespace) {
+
+}
+
+export function icap(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import c from '../../CustomClass';
 import styles from './text.module.css';
-import { istyleParser } from '../istyle';
+import { istyleParser } from '../i';
 import Highlight from 'react-highlight';
 import './vs2015.css';
 
@@ -24,10 +24,16 @@ export default function Text(_props) {
     else elem = <span {...props} className={c(styles.text, props.className)}>{content}</span>;
 */
 
-    if (props['code-notrim']) {
-        props['code-notrim'] = undefined;
+    if (props['notrim']) {
+        props['notrim'] = undefined;
     } else {
-        content = content?.trim();
+        if (typeof content === 'string') {
+            content = content?.trim();
+            if (process.env.NODE_ENV !== 'production' && !global._saffron_debug?.text.didShowTrimWarning) {
+                console.warn("<Text /> content is trimmed. Use <Text notrim /> to disable this behavior.");
+                
+            }
+        }
     }
 
     if (props.sub) Elem = (p) => <sub {...p} sub={undefined}>{content}</sub>;

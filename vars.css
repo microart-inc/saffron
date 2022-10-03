@@ -11,9 +11,16 @@ html {
 
     /* BACKGROUND */
     --s-bg: white;
-    --s-bg-light: #f9fafb;
+    --s-bg-1: #f9f9f9;
+    --s-bg-2: #f7f7f7;
+    --s-bg-3: #f5f5f5;
+    --s-bg-4: #f3f3f3;
+    --s-bg-5: #f1f1f1;
     --s-bg-invert: black;
     --s-bg-blur: rgba(255, 255, 255, .7);
+    --s-bg-blur-1: rgba(255, 255, 255, .8);
+    --s-bg-blur-2: rgba(255, 255, 255, .9);
+    --s-bg-blur-3: rgba(255, 255, 255, .95);
     --s-bg-backdrop: blur(20px) saturate(2);
 
     /* BOX SHADOWS */

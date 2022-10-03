@@ -1,6 +1,6 @@
 import React from 'react';
 import c from '../../CustomClass';
-import { istyleParser } from '../istyle';
+import { istyleParser } from '../i';
 import styles from './container.module.css';
 
 export default function Container(_props) {
