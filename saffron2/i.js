@@ -33,22 +33,24 @@ const aliasProperties = [
     ['bg', 'background'],
 ];
 
-export function istyleParser(props) {
+export function istyleParser(props, isText = false) {
 
     if (props.bold === true) {
         props.style = { ...props.style, fontWeight: 'bold' };
         props.bold = undefined;
     }
 
-    if (props.rawBg) {
-        props.rawBg = undefined;
-    } else if (props.bg) {
+    if (props.bg && !props.rawBg && isText) {
         props.style = {
             ...props.style,
             borderRadius: 3,
             padding: "1px 4px"
         };
-    }
+    } 
+    
+    if (props.rawBg) {
+        props.rawBg = undefined;
+    }    
 
     properties.forEach((prop) => {
         if (props[prop]) {

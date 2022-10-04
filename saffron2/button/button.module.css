@@ -1,0 +1,11 @@
+.button {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: filter 0.1s ease;
+}
+
+.button:hover {
+    filter: brightness(1.1);
+}

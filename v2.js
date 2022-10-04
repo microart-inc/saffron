@@ -8,6 +8,7 @@ import CardImage from './saffron2/card/image';
 import CardFooter from './saffron2/card/footer';
 import CardButton from './saffron2/card/button';
 import Flex from './saffron2/flex/flex';
+import Button from './saffron2/button/button';
 
 export {
     Container,
@@ -17,5 +18,6 @@ export {
     CardImage,
     CardFooter,
     CardButton,
-    Flex
+    Flex,
+    Button,
 };

@@ -4,11 +4,66 @@ import styles from './text.module.css';
 import { istyleParser } from '../i';
 import Highlight from 'react-highlight';
 import './vs2015.css';
+import moment from 'moment';
+
+const formatters = [
+    {
+        name: 'currency',
+        formatter: new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        }),
+    },
+    {
+        name: 'date',
+        formatter: {
+            format: (date) => moment(date).format('MMM Do, YYYY'),
+        }
+    },
+    {
+        name: 'time',
+        formatter: {
+            format: (date) => moment(date).format('h:mm A'),
+        }
+    },
+    {
+        name: 'datetime',
+        formatter: {
+            format: (date) => moment(date).format('MMM Do, YYYY h:mm A'),
+        }
+    },
+    {
+        name: 'number',
+        formatter: new Intl.NumberFormat('en-US'),
+    },
+    {
+        name: 'percent',
+        formatter: new Intl.NumberFormat('en-US', {
+            style: 'percent',
+        }),
+    },
+    {
+        name: 'bytes',
+        formatter: {
+            format: (bytes) => {
+                const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+                if (bytes == 0) return '0 Byte';
+                const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+                return (bytes / Math.pow(1024, i)).toFixed(2) + ' ' + sizes[i];
+            }
+        }
+    }
+];
 
 export default function Text(_props) {
     let props = { ..._props };
     let content = props.children;
     let classes = [styles.text, props.className];
+
+    if (shouldFormat(props)) {
+        content = tryFormat(props);
+    }
+
     let Elem = (p) => <span {...p}>{content}</span>;
 
     /*
@@ -30,8 +85,7 @@ export default function Text(_props) {
         if (typeof content === 'string') {
             content = content?.trim();
             if (process.env.NODE_ENV !== 'production' && !global._saffron_debug?.text.didShowTrimWarning) {
-                console.warn("<Text /> content is trimmed. Use <Text notrim /> to disable this behavior.");
-                
+                //console.warn("<Text /> content is trimmed. Use <Text notrim /> to disable this behavior.");
             }
         }
     }
@@ -45,8 +99,38 @@ export default function Text(_props) {
         }
     }
 
-    props = istyleParser(props);
+    props = istyleParser(props, true);
     props.className = c(...classes);
 
+    props.formatter = undefined;
+
     return <Elem {...props} />
+}
+
+function shouldFormat(props) {
+    return props.formatter || formatters.some(f => props[f.name]);
+}
+
+function tryFormat(props) {
+    let formatter = props.formatter;
+    if (!formatter) {
+        formatter = getFormatter(props);
+    } else {
+        formatter = {
+            format: formatter,
+        }
+    }
+
+    if (formatter) {
+        return formatter.format(props.children);
+    }
+
+    props.formatter = undefined;
+    return props.children;
+}
+
+function getFormatter(props) {
+    let f = formatters.find(f => props[f.name]);
+    props[f.name] = undefined;
+    return f.formatter;
 }
