@@ -22,18 +22,18 @@ export default function Flex(_props) {
         ...(props.self && { alignSelf: props.self }),
     };
 
-    props.column = undefined;
-    props.row = undefined;
-    props.wrap = undefined;
-    props.justify = undefined;
-    props.align = undefined;
-    props.gapX = undefined;
-    props.gapY = undefined;
-    props.grow = undefined;
-    props.shrink = undefined;
-    props.basis = undefined;
-    props.order = undefined;
-    props.self = undefined;
+    delete props.column;
+    delete props.row;
+    delete props.wrap;
+    delete props.justify;
+    delete props.align;
+    delete props.gapX;
+    delete props.gapY;
+    delete props.grow;
+    delete props.shrink;
+    delete props.basis;
+    delete props.order;
+    delete props.self;
 
     props = istyleParser(props);
 

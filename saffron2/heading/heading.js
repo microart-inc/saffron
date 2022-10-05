@@ -16,7 +16,7 @@ export default function Heading(_props) {
     if (props.line) {
         props.style.borderBottom = "1px solid rgba(0,0,0,0.2)";
         props.style.paddingBottom = "0.5rem";
-        props.line = undefined;
+        delete props.line;
     }
 
     if (props.h2) elem = <h2 {...props} className={c(styles.h2, props.className)} h2={undefined}>{props.children}</h2>;

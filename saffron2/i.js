@@ -37,7 +37,7 @@ export function istyleParser(props, isText = false) {
 
     if (props.bold === true) {
         props.style = { ...props.style, fontWeight: 'bold' };
-        props.bold = undefined;
+        delete props.bold;
     }
 
     if (props.bg && !props.rawBg && isText) {
@@ -49,39 +49,39 @@ export function istyleParser(props, isText = false) {
     } 
     
     if (props.rawBg) {
-        props.rawBg = undefined;
+        delete props.rawBg;
     }    
 
     properties.forEach((prop) => {
         if (props[prop]) {
             props.style = { ...props.style, [prop]: props[prop] };
-            props[prop] = undefined;
+            delete props[prop];
         }
     });
 
     specialProperties.forEach((prop) => {
         if (props[prop[0]] === true) {
             props.style = { ...props.style, [prop[1]]: prop[2] };
-            props[prop[0]] = undefined;
+            delete props[prop[0]];
         } else if (props[prop[0]] && prop[3] !== false) {
             props.style = { ...props.style, [prop[1]]: props[prop[0]] };
-            props[prop[0]] = undefined;
+            delete props[prop[0]];
         } else {
-            props[prop[0]] = undefined;
+            delete props[prop[0]];
         }
     });
 
     customProperties.forEach((prop) => {
         if (props[prop[0]] === true) {
             props.style = { ...props.style, [prop[1]]: prop[2] };
-            props[prop[0]] = undefined;
+            delete props[prop[0]];
         }
     });
 
     aliasProperties.forEach((prop) => {
         if (props[prop[0]]) {
             props.style = { ...props.style, [prop[1]]: props[prop[0]] };
-            props[prop[0]] = undefined;
+            delete props[prop[0]];
         }
     });
 

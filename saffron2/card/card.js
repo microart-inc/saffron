@@ -11,7 +11,7 @@ export default function Card(_props) {
 
     if (props.min) {
         classes.push(styles.min);
-        props.min = undefined;
+        delete props.min;
     }
 
     props = istyleParser(props);
@@ -26,9 +26,9 @@ export default function Card(_props) {
         let dSize = props.decorationSize ?? 3;
         let dSide = props.decorationSide ?? 'left';
         decoration['border' + icap(dSide)] =  dSize + 'px solid ' + dColor;
-        props.decorationColor = undefined;
-        props.decorationSide = undefined;
-        props.decorationSize = undefined;
+        delete props.decorationColor;
+        delete props.decorationSide;
+        delete props.decorationSize;
     }
 
     return (

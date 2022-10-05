@@ -1,0 +1,33 @@
+.aWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.aHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    cursor: pointer;
+    padding: 15px 20px;
+    width: 100%;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.aBody {
+    color: var(--s-clr-4);
+    padding: 0 20px 15px 20px;
+}
+
+.aHolder {
+    display: flex;
+    flex-direction: column;
+    /*border: var(--s-border-1);*/
+    box-shadow: 0 0 0 1.2px var(--s-border-1-color);
+    border-radius: 8px;
+}
+
+.aWrapper:not(:last-child) {
+    border-bottom: var(--s-border-1);
+}

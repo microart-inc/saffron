@@ -9,7 +9,7 @@ export default function Container(_props) {
     props = istyleParser(props);
 
     if (props.raw) {
-        props.raw = undefined;
+        delete props.raw;
     } else {
         classes.push(styles.containerDefault);
     }

@@ -80,7 +80,7 @@ export default function Text(_props) {
 */
 
     if (props['notrim']) {
-        props['notrim'] = undefined;
+        delete props['notrim'];
     } else {
         if (typeof content === 'string') {
             content = content?.trim();
@@ -102,7 +102,7 @@ export default function Text(_props) {
     props = istyleParser(props, true);
     props.className = c(...classes);
 
-    props.formatter = undefined;
+    delete props.formatter;
 
     return <Elem {...props} />
 }
@@ -125,12 +125,12 @@ function tryFormat(props) {
         return formatter.format(props.children);
     }
 
-    props.formatter = undefined;
+    delete props.formatter;
     return props.children;
 }
 
 function getFormatter(props) {
     let f = formatters.find(f => props[f.name]);
-    props[f.name] = undefined;
+    delete props[f.name];
     return f.formatter;
 }
