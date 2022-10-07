@@ -12,6 +12,8 @@ import Button from './saffron2/button/button';
 import Icon from './saffron2/icon/icon';
 import Accordion from './saffron2/accordion/accordion';
 import Overlap from './saffron2/overlap/overlap';
+import Style from './saffron2/style/style';
+import ProgressBar from './saffron2/bars/progress';
 
 export {
     Container,
@@ -25,5 +27,7 @@ export {
     Button,
     Icon,
     Accordion,
-    Overlap
+    Overlap,
+    Style,
+    ProgressBar
 };

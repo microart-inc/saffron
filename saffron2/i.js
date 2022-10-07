@@ -2,6 +2,7 @@
 const properties = [
     'color', 'margin', 'padding', 'width', 'height',
     'border', 'gap', 'maxWidth', 'minWidth', 'minHeight', 'maxHeight',
+    'cursor', 'display', 'flex', 'flexDirection', 'flexWrap', 'justifyContent',
 ];
 // [key, style-key, default if true, should allow custom value]
 const specialProperties = [
