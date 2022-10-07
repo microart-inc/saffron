@@ -18,7 +18,9 @@
 .aBody {
     color: var(--s-clr-4);
     padding: 0 20px 15px 20px;
+    overflow: hidden;
 }
+
 
 .aHolder {
     display: flex;

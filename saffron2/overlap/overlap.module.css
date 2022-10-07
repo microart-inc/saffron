@@ -1,0 +1,10 @@
+.default {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+.default > * {
+    grid-column: 1;
+    grid-row: 1;
+}
