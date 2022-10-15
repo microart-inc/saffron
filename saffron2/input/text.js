@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { IoCaretDown } from "react-icons/io5";
 import { istyleParser } from "../i";
 import styles from './input.module.css';
+import { AnimatePresence, motion } from 'framer-motion';
 
 
 export default function TextInput({ value, placeholder, prefix, suffix, onChange, defaultValue, ..._props }) {
@@ -11,9 +12,9 @@ export default function TextInput({ value, placeholder, prefix, suffix, onChange
 
     useEffect(() => {
         if (!_v && (_p || _s))
-            console.warn('Cannot use prefix or suffix when <TextInput /> is controlled, prefix and suffix will need to be manually added.');
+            console.warn('<TextInput /> is currently in controlled mode, prefixes and suffixes will need to be manually added.');
     }, []);
-    let [inputValue, setInputValue] = React.useState(defaultValue);
+    let [inputValue, setInputValue] = React.useState(defaultValue ?? "");
 
     let shouldAddFix = !(!_v && (_p || _s));
 
@@ -26,7 +27,7 @@ export default function TextInput({ value, placeholder, prefix, suffix, onChange
     let prefixValue = isPrefixArray ? (prefix[prefixIndex] ?? "") : (prefix ?? "");
     let suffixValue = isSuffixArray ? (suffix[suffixIndex] ?? "") : (suffix ?? "");
 
-    let props = {..._props};
+    let props = { ..._props };
 
     props = istyleParser(props);
 
@@ -40,10 +41,30 @@ export default function TextInput({ value, placeholder, prefix, suffix, onChange
         });
     }, []);
 
+
+    let direction = "bottom";
+    if (props.right) direction = "right";
+    if (props.left) direction = "left";
+    if (props.bottom) direction = "bottom";
+    if (props.top) direction = "top";
+
+    let inputStyle = {};
+
+    if(!_p) {
+        inputStyle.borderTopLeftRadius = 0;
+        inputStyle.borderBottomLeftRadius = 0;
+    }
+
+    if(!_s) {
+        inputStyle.borderTopRightRadius = 0;
+        inputStyle.borderBottomRightRadius = 0;
+    }
+
     return (
         <div className={styles.textinputWrapper} {...props}>
             {prefix && (isPrefixArray ? (
                 <TempDropDown
+                    direction={direction}
                     items={prefix}
                     selectedIndex={prefixIndex}
                     onChange={e => {
@@ -79,6 +100,7 @@ export default function TextInput({ value, placeholder, prefix, suffix, onChange
                 className={styles.textinput}
                 value={value ?? inputValue}
                 placeholder={placeholder ?? "<TextInput />"}
+                style={inputStyle}
                 onChange={e => {
                     setInputValue(e.target.value);
                     let enew = {
@@ -93,6 +115,7 @@ export default function TextInput({ value, placeholder, prefix, suffix, onChange
             />
             {suffix && (isSuffixArray ? (
                 <TempDropDown
+                    direction={direction}
                     items={suffix}
                     selectedIndex={suffixIndex}
                     onChange={e => {
@@ -115,7 +138,7 @@ export default function TextInput({ value, placeholder, prefix, suffix, onChange
                             })
                         }}
                     >
-                        {suffix[prefixIndex]}
+                        {suffix[suffixIndex]}
                         {suffix.length > 1 && (
                             <IoCaretDown />
                         )}
@@ -128,7 +151,7 @@ export default function TextInput({ value, placeholder, prefix, suffix, onChange
     );
 }
 
-function TempDropDown({ items, selectedIndex, onChange, children }) {
+function TempDropDown({ items, selectedIndex, onChange, children, direction }) {
 
     let [open, setOpen] = React.useState(false);
 
@@ -141,9 +164,49 @@ function TempDropDown({ items, selectedIndex, onChange, children }) {
         return () => window.removeEventListener('click', onWindowClick);
     }, [open]);
 
+    let parentStyle = {};
+    let dropdownStyleOrg = {};
+    let dropdownStyle = {};
+
+    switch (direction) {
+        case "top":
+            parentStyle = {
+                flexDirection: 'column-reverse',
+                top: -5
+            };
+            dropdownStyle = { y: "calc(-100% - 5px)", height: 'auto' };
+            dropdownStyleOrg = { y: 20, height: 0 };
+            break;
+        case "bottom":
+            parentStyle = {
+                flexDirection: 'column',
+                top: 5
+            };
+            dropdownStyle = { y: 5, height: 'auto' };
+            dropdownStyleOrg = { y: -20, height: 0 };
+            break;
+        case "left":
+            parentStyle = {
+                flexDirection: 'row-reverse',
+                left: -5
+            };
+            dropdownStyle = { x: -5 };
+            dropdownStyleOrg = { x: 50 };
+            break;
+        case "right":
+            parentStyle = {
+                flexDirection: 'row',
+                left: 5
+            };
+            dropdownStyle = { x: 5, width: 'auto' };
+            dropdownStyleOrg = { x: -50, width: 0 };
+            break;
+    }
+
     return (
         <div
             className={styles.textinputDropdownWrapper}
+            style={parentStyle}
         >
             <div
                 onClick={e => {
@@ -153,32 +216,43 @@ function TempDropDown({ items, selectedIndex, onChange, children }) {
             >
                 {children}
             </div>
-            {open && (
-                <div className={styles.textinputDropdown}>
-                    <div className={styles.textinputDropdownItems}>
-                        {items.map((p, i) => (
-                            <div
-                                key={i}
-                                className={styles.textinputDropdownItem}
-                                onClick={e => {
-                                    e.stopPropagation();
-                                    let enew = {
-                                        ...e,
-                                        target: {
-                                            ...e.target,
-                                            value: i
-                                        }
-                                    };
-                                    onChange?.(enew);
-                                    setOpen(false);
-                                }}
-                            >
-                                {p}
-                            </div>
-                        ))}
+            <AnimatePresence>
+                {open && (
+                    <div className={styles.textinputDropdown}>
+                        <motion.div
+                            className={styles.textinputDropdownItems}
+                            initial={{ opacity: 0, filter: 'blur(15px)', scale: 0.9, ...dropdownStyleOrg }}
+                            animate={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1, ...dropdownStyle }}
+                            exit={{ opacity: 0, filter: 'blur(15px)', scale: 0.9, ...dropdownStyleOrg }}
+                            transition={{
+                                duration: 0.4,
+                                ease: 'easeOut'
+                            }}
+                        >
+                            {items.map((p, i) => (
+                                <div
+                                    key={i}
+                                    className={styles.textinputDropdownItem}
+                                    onClick={e => {
+                                        e.stopPropagation();
+                                        let enew = {
+                                            ...e,
+                                            target: {
+                                                ...e.target,
+                                                value: i
+                                            }
+                                        };
+                                        onChange?.(enew);
+                                        setOpen(false);
+                                    }}
+                                >
+                                    {p}
+                                </div>
+                            ))}
+                        </motion.div>
                     </div>
-                </div>
-            )}
+                )}
+            </AnimatePresence>
         </div>
     )
 }

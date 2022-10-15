@@ -12,6 +12,10 @@
     padding: 8px 15px;
     border: none;
     flex-grow: 1;
+    border-radius: 5px;
+    z-index: 1;
+    box-shadow: 0 0 0 0 transparent;
+    transition: box-shadow 0.4s ease;
 }
 
 /*
@@ -23,6 +27,7 @@
 
 .textinput:focus {
     outline: none;
+    box-shadow: 0 0 0 2px rgb(0, 125, 255);
 }
 
 .textinputPrefix,
@@ -39,10 +44,12 @@
 
 .textinputPrefix {
     border-right: var(--s-border-6);
+    border-radius: 5px 0 0 5px;
 }
 
 .textinputSuffix {
     border-left: var(--s-border-6);
+    border-radius: 0 5px 5px 0;
 }
 
 .textinputDropdownWrapper {
@@ -53,9 +60,8 @@
 
 .textinputDropdown {
     height: 0;
+    width: 0;
     min-width: 150%;
-    margin-left: -25%;
-    top: 5px;
     position: relative;
     z-index: 99;
 }
@@ -63,10 +69,12 @@
 .textinputDropdownItems {
     display: flex;
     flex-direction: column;
-    background: var(--s-bg);
+    background: var(--s-bg-blur-3);
+    backdrop-filter: var(--s-bg-backdrop);
     border: var(--s-border-5);
     border-radius: 5px;
     box-shadow: var(--s-bs-light);
+    overflow: hidden;
 }
 
 .textinputDropdownItem {

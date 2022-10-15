@@ -15,6 +15,7 @@ import Overlap from './saffron2/overlap/overlap';
 import Style from './saffron2/style/style';
 import ProgressBar from './saffron2/bars/progress';
 import TextInput from './saffron2/input/text';
+import Line from './saffron2/line/line';
 
 export {
     Container,
@@ -31,5 +32,6 @@ export {
     Overlap,
     Style,
     ProgressBar,
-    TextInput
+    TextInput,
+    Line
 };

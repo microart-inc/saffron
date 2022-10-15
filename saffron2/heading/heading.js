@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './heading.module.css';
 import c from '../../CustomClass';
+import { istyleParser } from "../i";
 
 export default function Heading(_props) {
     let elem = null;
@@ -18,6 +19,8 @@ export default function Heading(_props) {
         props.style.paddingBottom = "0.5rem";
         delete props.line;
     }
+
+    props = istyleParser(props);
 
     if (props.h2) elem = <h2 {...props} className={c(styles.h2, props.className)} h2={undefined}>{props.children}</h2>;
     else if (props.h3) elem = <h3 {...props} className={c(styles.h3, props.className)} h3={undefined}>{props.children}</h3>;
