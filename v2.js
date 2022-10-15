@@ -14,6 +14,7 @@ import Accordion from './saffron2/accordion/accordion';
 import Overlap from './saffron2/overlap/overlap';
 import Style from './saffron2/style/style';
 import ProgressBar from './saffron2/bars/progress';
+import TextInput from './saffron2/input/text';
 
 export {
     Container,
@@ -29,5 +30,6 @@ export {
     Accordion,
     Overlap,
     Style,
-    ProgressBar
+    ProgressBar,
+    TextInput
 };
