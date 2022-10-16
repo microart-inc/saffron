@@ -13,7 +13,7 @@
 
 .bar {
     width: 50%;
-    background: rgb(0, 120, 250);
+    background: var(--s-accent);
     border-radius: 1000px;
     transition: width 0.7s cubic-bezier(.3, .84, .29, .91);
 }

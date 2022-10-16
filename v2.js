@@ -15,6 +15,8 @@ import Overlap from './saffron2/overlap/overlap';
 import Style from './saffron2/style/style';
 import ProgressBar from './saffron2/bars/progress';
 import TextInput from './saffron2/input/text';
+import ByteInput from './saffron2/input/byte';
+import ImageInput from './saffron2/input/image';
 import Line from './saffron2/line/line';
 
 export {
@@ -33,5 +35,7 @@ export {
     Style,
     ProgressBar,
     TextInput,
+    ByteInput,
+    ImageInput,
     Line
 };

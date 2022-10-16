@@ -5,7 +5,17 @@ import styles from './input.module.css';
 import { AnimatePresence, motion } from 'framer-motion';
 
 
-export default function TextInput({ value, placeholder, prefix, suffix, onChange, defaultValue, ..._props }) {
+export default function TextInput({
+    value,
+    placeholder,
+    prefix,
+    suffix,
+    onChange,
+    defaultValue,
+    onPrefixChange,
+    onSuffixChange,
+    ..._props
+}) {
     let _v = value === null || value === undefined;
     let _p = prefix === null || prefix === undefined;
     let _s = suffix === null || suffix === undefined;
@@ -43,19 +53,31 @@ export default function TextInput({ value, placeholder, prefix, suffix, onChange
 
 
     let direction = "bottom";
-    if (props.right) direction = "right";
-    if (props.left) direction = "left";
-    if (props.bottom) direction = "bottom";
-    if (props.top) direction = "top";
+    if (props.right) {
+        direction = "right";
+        delete props.right;
+    }
+    if (props.left) {
+        direction = "left";
+        delete props.left;
+    }
+    if (props.bottom) {
+        direction = "bottom";
+        delete props.bottom;
+    }
+    if (props.top) {
+        direction = "top";
+        delete props.top;
+    }
 
     let inputStyle = {};
 
-    if(!_p) {
+    if (!_p) {
         inputStyle.borderTopLeftRadius = 0;
         inputStyle.borderBottomLeftRadius = 0;
     }
 
-    if(!_s) {
+    if (!_s) {
         inputStyle.borderTopRightRadius = 0;
         inputStyle.borderBottomRightRadius = 0;
     }
@@ -76,7 +98,11 @@ export default function TextInput({ value, placeholder, prefix, suffix, onChange
                                 value: shouldAddFix ? (prefix[e.target.value] + inputValue + suffixValue) : inputValue
                             }
                         }
-                        onChange?.(enew);
+                        if (onPrefixChange) {
+                            onPrefixChange?.(e.target.value);
+                        } else {
+                            onChange?.(enew);
+                        }
                     }}
                 >
                     <div
@@ -112,6 +138,7 @@ export default function TextInput({ value, placeholder, prefix, suffix, onChange
                     }
                     onChange?.(enew);
                 }}
+                {...props}
             />
             {suffix && (isSuffixArray ? (
                 <TempDropDown
@@ -127,7 +154,11 @@ export default function TextInput({ value, placeholder, prefix, suffix, onChange
                                 value: shouldAddFix ? (prefixValue + inputValue + suffix[e.target.value]) : inputValue
                             }
                         }
-                        onChange?.(enew);
+                        if (onSuffixChange) {
+                            onSuffixChange?.(e.target.value);
+                        } else {
+                            onChange?.(enew);
+                        }
                     }}
                 >
                     <div

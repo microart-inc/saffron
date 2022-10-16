@@ -14,7 +14,7 @@ export default function Button(_props) {
     if (props.primary) {
         props.style = {
             ...props.style,
-            background: props.bg ?? "rgb(0, 120,255)",
+            background: props.bg ?? "var(--s-accent)",
             color: props.color ?? "white",
         }
         delete props.bg;

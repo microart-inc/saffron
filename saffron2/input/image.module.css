@@ -1,0 +1,50 @@
+.wrapper {
+    border: var(--s-border-6);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.input {
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.info {
+    padding: 8px 15px;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.preview {
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+    border-bottom: var(--s-border-6);
+}
+
+.image {
+    width: 100%;
+    display: block;
+}
+
+.button {
+    padding: 8px 15px;
+    border-left: var(--s-border-6);
+    display: flex;
+    background: var(--s-bg-5);
+    color: var(--s-clr-3);
+    cursor: pointer;
+    transition: background 0.2s ease,
+        color 0.2s ease;
+}
+
+.button:hover {
+    color: var(--s-clr);
+    background: var(--s-bg-4);
+}

@@ -27,7 +27,7 @@
 
 .textinput:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgb(0, 125, 255);
+    box-shadow: 0 0 0 2px var(--s-accent);
 }
 
 .textinputPrefix,

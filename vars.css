@@ -8,6 +8,12 @@ html {
     --s-clr-4: #718096;
     --s-clr-5: #a0aec0;
     --s-clr-invert: white;
+    --s-accent: rgb(0, 127, 255);
+
+    --s-danger: rgb(255, 0, 0);
+    --s-success: rgb(0, 255,100);
+    --s-warning: rgb(255,180,80);
+    --s-info: rgb(0, 120,255);
 
     /* BACKGROUND */
     --s-bg: white;
