@@ -11,9 +11,9 @@ html {
     --s-accent: rgb(0, 127, 255);
 
     --s-danger: rgb(255, 0, 0);
-    --s-success: rgb(0, 255,100);
-    --s-warning: rgb(255,180,80);
-    --s-info: rgb(0, 120,255);
+    --s-success: rgb(0, 255, 100);
+    --s-warning: rgb(255, 180, 80);
+    --s-info: rgb(0, 120, 255);
 
     /* BACKGROUND */
     --s-bg: white;
@@ -37,29 +37,33 @@ html {
     --s-bs-very-heavy: 0 10px 40px 0 rgba(0, 0, 0, 0.3);
 
     /* BORDERS */
-    --s-border-1-color: #e5e7eb;
+
+    --s-border-1-color: #ffffff;
+    --s-border-2-color: #f4f6f7;
+    --s-border-3-color: #e9ecef;
+    --s-border-4-color: #dee3e7;
+    --s-border-5-color: #d3d9df;
+    --s-border-6-color: #c8d0d8;
+    --s-border-7-color: #bcc6d0;
+    --s-border-8-color: #b1bdc8;
+
     --s-border-1: 1px solid var(--s-border-1-color);
-    --s-border-1-bs: 0 0 0 1px var(--s-border-1-color);
-
-    --s-border-2-color: #e5e7eb;
     --s-border-2: 1px solid var(--s-border-2-color);
-    --s-border-2-bs: 0 1px 2px -1px var(--s-border-2-color);
-
-    --s-border-3-color: #e5e7eb;
     --s-border-3: 1px solid var(--s-border-3-color);
-    --s-border-3-bs: 0 1px 3px 0 var(--s-border-3-color);
-
-    --s-border-4-color: #e5e7eb;
     --s-border-4: 1px solid var(--s-border-4-color);
-    --s-border-4-bs: 0 1px 3px 0 var(--s-border-4-color), 0 1px 2px -1px var(--s-border-4-color);
-
-    --s-border-5-color: #e5e7eb;
     --s-border-5: 1px solid var(--s-border-5-color);
-    --s-border-5-bs: 0 1px 3px 0 var(--s-border-5-color), 0 1px 2px -1px var(--s-border-5-color), 0 0 0 1px var(--s-border-5-color);
-
-    --s-border-6-color: #c3c5c8;
     --s-border-6: 1px solid var(--s-border-6-color);
-    --s-border-6-bs: 0 1px 3px 0 var(--s-border-6-color), 0 1px 2px -1px var(--s-border-6-color), 0 0 0 1px var(--s-border-6-color), 0 1px 1px 0 var(--s-border-6-color);
+    --s-border-7: 1px solid var(--s-border-7-color);
+    --s-border-8: 1px solid var(--s-border-8-color);
+
+    --s-border-1-bs: 0 0 0 1px var(--s-border-1-color);
+    --s-border-2-bs: 0 0 0 1px var(--s-border-2-color);
+    --s-border-3-bs: 0 0 0 1px var(--s-border-3-color);
+    --s-border-4-bs: 0 0 0 1px var(--s-border-4-color);
+    --s-border-5-bs: 0 0 0 1px var(--s-border-5-color);
+    --s-border-6-bs: 0 0 0 1px var(--s-border-6-color);
+    --s-border-7-bs: 0 0 0 1px var(--s-border-7-color);
+    --s-border-8-bs: 0 0 0 1px var(--s-border-8-color);
 }
 
 html[data-theme="dark"] {

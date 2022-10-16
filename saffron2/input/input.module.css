@@ -1,5 +1,5 @@
 .textinputWrapper {
-    border: var(--s-border-6);
+    border: var(--s-border-4);
     border-radius: 5px;
     font-size: 0.9em;
     transition: box-shadow 0.2s ease;
@@ -16,6 +16,7 @@
     z-index: 1;
     box-shadow: 0 0 0 0 transparent;
     transition: box-shadow 0.4s ease;
+    --text-input-hover-border-color: var(--s-accent);
 }
 
 /*
@@ -27,7 +28,7 @@
 
 .textinput:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--s-accent);
+    box-shadow: 0 0 0 2px var(--text-input-hover-border-color);
 }
 
 .textinputPrefix,
@@ -43,12 +44,12 @@
 }
 
 .textinputPrefix {
-    border-right: var(--s-border-6);
+    border-right: var(--s-border-4);
     border-radius: 5px 0 0 5px;
 }
 
 .textinputSuffix {
-    border-left: var(--s-border-6);
+    border-left: var(--s-border-4);
     border-radius: 0 5px 5px 0;
 }
 
@@ -75,6 +76,7 @@
     border-radius: 5px;
     box-shadow: var(--s-bs-light);
     overflow: hidden;
+    font-size: 0.95em;
 }
 
 .textinputDropdownItem {
@@ -89,4 +91,14 @@
 
 .textinputDropdownItem:hover {
     background: var(--s-bg-3);
+}
+
+.inputAndLabelWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+}
+
+.inputAndLabelWrapper label {
+    font-size: 0.75em;
 }

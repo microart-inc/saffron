@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { IoCaretDown } from "react-icons/io5";
 import { istyleParser } from "../i";
 import styles from './input.module.css';
 import { AnimatePresence, motion } from 'framer-motion';
+import { v4 } from "uuid";
 
 
 export default function TextInput({
@@ -82,103 +83,189 @@ export default function TextInput({
         inputStyle.borderBottomRightRadius = 0;
     }
 
+    let [id, setId] = useState(props.id ?? v4());
+
+    let label = null;
+    if (props.label) {
+        label = props.label;
+        delete props.label;
+    }
+
+    let valid = 2;
+    let allowList;
+    let disallowList;
+    if (props.allow) {
+        if (typeof props.allow === "string") {
+            let _allow = props.allow;
+            _allow = _allow.replaceAll('a-z', 'abcdefghijklmnopqrstuvwxyz');
+            _allow = _allow.replaceAll('A-Z', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+            _allow = _allow.replaceAll('0-9', '0123456789');
+            allowList = _allow.split('');
+        }
+        delete props.allow;
+    }
+    if (props.disallow) {
+        if (typeof props.disallow === "string") {
+            let _disallow = props.disallow;
+            _disallow = _disallow.replaceAll('&file', '\\/:*?"<>|');
+            _disallow = _disallow.replaceAll('a-z', 'abcdefghijklmnopqrstuvwxyz');
+            _disallow = _disallow.replaceAll('A-Z', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+            _disallow = _disallow.replaceAll('0-9', '0123456789');
+            disallowList = _disallow.split('');
+        }
+        delete props.disallow;
+    }
+
+    if (allowList && disallowList) {
+        throw new Error('Cannot use both allow and disallow lists.');
+    }
+
+    if (props.min) {
+        if (inputValue.length < props.min) valid = 0;
+        delete props.min;
+    }
+
+    let max;
+    if (props.max) {
+        max = props.max;
+        delete props.max;
+    }
+
+    switch (valid) {
+        case 0:
+            inputStyle['--text-input-hover-border-color'] = 'var(--s-danger)';
+            break;
+        case 1:
+            inputStyle['--text-input-hover-border-color'] = 'var(--s-warning)';
+            break;
+    }
+
     return (
-        <div className={styles.textinputWrapper} {...props}>
-            {prefix && (isPrefixArray ? (
-                <TempDropDown
-                    direction={direction}
-                    items={prefix}
-                    selectedIndex={prefixIndex}
+        <div className={styles.inputAndLabelWrapper}>
+            {label && <label for={id}>{label}</label>}
+            <div className={styles.textinputWrapper} {...props}>
+                {prefix && (isPrefixArray ? (
+                    <TempDropDown
+                        direction={direction}
+                        items={prefix}
+                        selectedIndex={prefixIndex}
+                        onChange={e => {
+                            setPrefixIndex(e.target.value);
+                            let enew = {
+                                ...e,
+                                target: {
+                                    ...e.target,
+                                    value: shouldAddFix ? (prefix[e.target.value] + inputValue + suffixValue) : inputValue
+                                }
+                            }
+                            if (onPrefixChange) {
+                                onPrefixChange?.(e.target.value);
+                            } else {
+                                onChange?.(enew);
+                            }
+                        }}
+                    >
+                        <div
+                            className={styles.textinputPrefix}
+                            style={{
+                                ...(prefix.length > 1 && {
+                                    cursor: 'pointer'
+                                })
+                            }}
+                        >
+                            {prefix[prefixIndex]}
+                            {prefix.length > 1 && (
+                                <IoCaretDown />
+                            )}
+                        </div>
+                    </TempDropDown>
+                ) : (
+                    <div className={styles.textinputPrefix}>{prefix}</div>
+                ))}
+                <input
+                    className={styles.textinput}
+                    value={value ?? inputValue}
+                    placeholder={placeholder ?? "<TextInput />"}
+                    style={inputStyle}
+                    id={id}
+                    maxLength={max?.toString()}
                     onChange={e => {
-                        setPrefixIndex(e.target.value);
-                        let enew = {
-                            ...e,
-                            target: {
-                                ...e.target,
-                                value: shouldAddFix ? (prefix[e.target.value] + inputValue + suffixValue) : inputValue
+                        if (max) {
+                            if (e.target.value.length > max) return;
+                        }
+                        let shouldInput = true;
+                        if (allowList || disallowList) {
+                            let _allow = allowList;
+                            let _disallow = disallowList;
+                            let _value = e.target.value;
+                            for (let i = 0; i < _value.length; i++) {
+                                if (_allow) {
+                                    if (!_allow.includes(_value[i])) {
+                                        shouldInput = false;
+                                        break;
+                                    }
+                                } else if (_disallow) {
+                                    if (_disallow.includes(_value[i])) {
+                                        shouldInput = false;
+                                        break;
+                                    }
+                                }
                             }
                         }
-                        if (onPrefixChange) {
-                            onPrefixChange?.(e.target.value);
-                        } else {
+                        if (shouldInput) {
+                            setInputValue(e.target.value);
+                            let enew = {
+                                ...e,
+                                target: {
+                                    ...e.target,
+                                    value: shouldAddFix ? (prefixValue + e.target.value + suffixValue) : e.target.value
+                                }
+                            }
                             onChange?.(enew);
                         }
                     }}
-                >
-                    <div
-                        className={styles.textinputPrefix}
-                        style={{
-                            ...(prefix.length > 1 && {
-                                cursor: 'pointer'
-                            })
-                        }}
-                    >
-                        {prefix[prefixIndex]}
-                        {prefix.length > 1 && (
-                            <IoCaretDown />
-                        )}
-                    </div>
-                </TempDropDown>
-            ) : (
-                <div className={styles.textinputPrefix}>{prefix}</div>
-            ))}
-            <input
-                className={styles.textinput}
-                value={value ?? inputValue}
-                placeholder={placeholder ?? "<TextInput />"}
-                style={inputStyle}
-                onChange={e => {
-                    setInputValue(e.target.value);
-                    let enew = {
-                        ...e,
-                        target: {
-                            ...e.target,
-                            value: shouldAddFix ? (prefixValue + e.target.value + suffixValue) : e.target.value
-                        }
-                    }
-                    onChange?.(enew);
-                }}
-                {...props}
-            />
-            {suffix && (isSuffixArray ? (
-                <TempDropDown
-                    direction={direction}
-                    items={suffix}
-                    selectedIndex={suffixIndex}
-                    onChange={e => {
-                        setSuffixIndex(e.target.value);
-                        let enew = {
-                            ...e,
-                            target: {
-                                ...e.target,
-                                value: shouldAddFix ? (prefixValue + inputValue + suffix[e.target.value]) : inputValue
+                    {...props}
+                />
+                {suffix && (isSuffixArray ? (
+                    <TempDropDown
+                        direction={direction}
+                        items={suffix}
+                        selectedIndex={suffixIndex}
+                        onChange={e => {
+                            setSuffixIndex(e.target.value);
+                            let enew = {
+                                ...e,
+                                target: {
+                                    ...e.target,
+                                    value: shouldAddFix ? (prefixValue + inputValue + suffix[e.target.value]) : inputValue
+                                }
                             }
-                        }
-                        if (onSuffixChange) {
-                            onSuffixChange?.(e.target.value);
-                        } else {
-                            onChange?.(enew);
-                        }
-                    }}
-                >
-                    <div
-                        className={styles.textinputSuffix}
-                        style={{
-                            ...(suffix.length > 1 && {
-                                cursor: 'pointer'
-                            })
+                            if (onSuffixChange) {
+                                onSuffixChange?.(e.target.value);
+                            } else {
+                                onChange?.(enew);
+                            }
                         }}
                     >
-                        {suffix[suffixIndex]}
-                        {suffix.length > 1 && (
-                            <IoCaretDown />
-                        )}
-                    </div>
-                </TempDropDown>
-            ) : (
-                <div className={styles.textinputSuffix}>{suffix}</div>
-            ))}
-        </div >
+                        <div
+                            className={styles.textinputSuffix}
+                            style={{
+                                ...(suffix.length > 1 && {
+                                    cursor: 'pointer'
+                                })
+                            }}
+                        >
+                            {suffix[suffixIndex]}
+                            {suffix.length > 1 && (
+                                <IoCaretDown />
+                            )}
+                        </div>
+                    </TempDropDown>
+                ) : (
+                    <div className={styles.textinputSuffix}>{suffix}</div>
+                ))}
+            </div>
+        </div>
     );
 }
 
