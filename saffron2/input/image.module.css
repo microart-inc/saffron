@@ -1,5 +1,6 @@
 .wrapper {
-    border: var(--s-border-4);
+    /*border: var(--s-border-4);*/
+    box-shadow: var(--s-border-4-bs1);
     border-radius: 5px;
     overflow: hidden;
     max-width: 300px;
@@ -26,18 +27,21 @@
     flex-direction: column;
     align-items: center;
     justify-content: stretch;
-    border-bottom: var(--s-border-4);
+    /*border-bottom: var(--s-border-4);*/
+    box-shadow: inset 0 -2.4px 0 -1.2px var(--s-border-4-color);
     user-select: none;
 }
 
 .image {
     width: 100%;
+    object-fit: cover;
     display: block;
 }
 
 .button {
     padding: 8px 15px;
-    border-left: var(--s-border-4);
+    /*border-left: var(--s-border-4);*/
+    box-shadow: inset 2.4px 0 0 -1.2px var(--s-border-4-color);
     display: flex;
     background: var(--s-bg-5);
     color: var(--s-clr-3);

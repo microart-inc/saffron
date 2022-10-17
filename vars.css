@@ -64,6 +64,15 @@ html {
     --s-border-6-bs: 0 0 0 1px var(--s-border-6-color);
     --s-border-7-bs: 0 0 0 1px var(--s-border-7-color);
     --s-border-8-bs: 0 0 0 1px var(--s-border-8-color);
+
+    --s-border-1-bs1: 0 0 0 1.2px var(--s-border-1-color);
+    --s-border-2-bs1: 0 0 0 1.2px var(--s-border-2-color);
+    --s-border-3-bs1: 0 0 0 1.2px var(--s-border-3-color);
+    --s-border-4-bs1: 0 0 0 1.2px var(--s-border-4-color);
+    --s-border-5-bs1: 0 0 0 1.2px var(--s-border-5-color);
+    --s-border-6-bs1: 0 0 0 1.2px var(--s-border-6-color);
+    --s-border-7-bs1: 0 0 0 1.2px var(--s-border-7-color);
+    --s-border-8-bs1: 0 0 0 1.2px var(--s-border-8-color);
 }
 
 html[data-theme="dark"] {

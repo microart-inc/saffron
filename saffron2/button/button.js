@@ -25,7 +25,7 @@ export default function Button(_props) {
             ...props.style,
             background: "transparent",
             color: props.bg ?? "var(--s-clr)",
-            border: "1px solid " + (props.bg ?? "var(--s-clr)")
+            boxShadow: "0 0 0 1.2px " + (props.bg ?? "var(--s-clr)"),
         }
         delete props.bg;
     }
