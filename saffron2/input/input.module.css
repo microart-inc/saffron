@@ -14,22 +14,28 @@
     border: none;
     flex-grow: 1;
     border-radius: 5px;
-    z-index: 1;
-    box-shadow: 0 0 0 0 transparent;
-    transition: box-shadow 0.4s ease;
-    --text-input-hover-border-color: var(--s-accent);
 }
 
 /*
 .textinputWrapper:hover {
     border: var(--s-border-6);
-    box-shadow: var(--s-bs-very-light);
+    border-radius: 5px;
 }
 */
 
 .textinput:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--text-input-hover-border-color);
+    /*box-shadow: 0 0 0 2px var(--text-input-hover-border-color);*/
+}
+
+.inputWrapper {
+    z-index: 1;
+    transition: box-shadow 0.4s ease;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
 }
 
 .textinputPrefix,

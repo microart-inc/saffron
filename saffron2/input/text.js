@@ -15,6 +15,9 @@ export default function TextInput({
     defaultValue,
     onPrefixChange,
     onSuffixChange,
+    decoration,
+    onFocus,
+    onBlur,
     ..._props
 }) {
     let _v = value === null || value === undefined;
@@ -31,6 +34,7 @@ export default function TextInput({
 
     let [prefixIndex, setPrefixIndex] = React.useState(0);
     let [suffixIndex, setSuffixIndex] = React.useState(0);
+    let [isFocused, setIsFocused] = React.useState(false);
 
     let isPrefixArray = Array.isArray(prefix);
     let isSuffixArray = Array.isArray(suffix);
@@ -72,15 +76,17 @@ export default function TextInput({
     }
 
     let inputStyle = {};
+    let focusStyle = {};
+    let focusStyleP = {};
 
     if (!_p) {
-        inputStyle.borderTopLeftRadius = 0;
-        inputStyle.borderBottomLeftRadius = 0;
+        focusStyleP.borderTopLeftRadius = 0;
+        focusStyleP.borderBottomLeftRadius = 0;
     }
 
     if (!_s) {
-        inputStyle.borderTopRightRadius = 0;
-        inputStyle.borderBottomRightRadius = 0;
+        focusStyleP.borderTopRightRadius = 0;
+        focusStyleP.borderBottomRightRadius = 0;
     }
 
     let [id, setId] = useState(props.id ?? v4());
@@ -131,12 +137,22 @@ export default function TextInput({
         delete props.max;
     }
 
+
     switch (valid) {
         case 0:
-            inputStyle['--text-input-hover-border-color'] = 'var(--s-danger)';
+            //inputStyle['--text-input-hover-border-color'] = 'var(--s-danger)';
+            //focusStyle.border = '1px solid var(--s-danger)';
+            focusStyle.boxShadow = '0 0 0 2px var(--s-danger)';
             break;
         case 1:
-            inputStyle['--text-input-hover-border-color'] = 'var(--s-warning)';
+            //inputStyle['--text-input-hover-border-color'] = 'var(--s-warning)';
+            //focusStyle.border = '1px solid var(--s-warning)';
+            focusStyle.boxShadow = '0 0 0 2px var(--s-warning)';
+            break;
+        case 2:
+            //inputStyle['--text-input-hover-border-color'] = 'var(--s-success)';
+            //focusStyle.border = '1px solid var(--s-accent)';
+            focusStyle.boxShadow = '0 0 0 2px var(--s-accent)';
             break;
     }
 
@@ -182,50 +198,67 @@ export default function TextInput({
                 ) : (
                     <div className={styles.textinputPrefix}>{prefix}</div>
                 ))}
-                <input
-                    className={styles.textinput}
-                    value={value ?? inputValue}
-                    placeholder={placeholder ?? "<TextInput />"}
-                    style={inputStyle}
-                    id={id}
-                    maxLength={max?.toString()}
-                    onChange={e => {
-                        if (max) {
-                            if (e.target.value.length > max) return;
-                        }
-                        let shouldInput = true;
-                        if (allowList || disallowList) {
-                            let _allow = allowList;
-                            let _disallow = disallowList;
-                            let _value = e.target.value;
-                            for (let i = 0; i < _value.length; i++) {
-                                if (_allow) {
-                                    if (!_allow.includes(_value[i])) {
-                                        shouldInput = false;
-                                        break;
-                                    }
-                                } else if (_disallow) {
-                                    if (_disallow.includes(_value[i])) {
-                                        shouldInput = false;
-                                        break;
+                <div
+                    className={styles.inputWrapper}
+                    style={isFocused ? {
+                        ...focusStyleP,
+                        ...focusStyle
+                    } : focusStyleP}
+                >
+                    <input
+                        className={styles.textinput}
+                        value={value ?? inputValue}
+                        placeholder={placeholder ?? "<TextInput />"}
+                        style={inputStyle}
+                        id={id}
+                        maxLength={max?.toString()}
+                        onFocus={() => {
+                            setIsFocused(true);
+                            onFocus?.();
+                        }}
+                        onBlur={() => {
+                            setIsFocused(false);
+                            onBlur?.();
+                        }}
+                        onChange={e => {
+                            if (max) {
+                                if (e.target.value.length > max) return;
+                            }
+                            let shouldInput = true;
+                            if (allowList || disallowList) {
+                                let _allow = allowList;
+                                let _disallow = disallowList;
+                                let _value = e.target.value;
+                                for (let i = 0; i < _value.length; i++) {
+                                    if (_allow) {
+                                        if (!_allow.includes(_value[i])) {
+                                            shouldInput = false;
+                                            break;
+                                        }
+                                    } else if (_disallow) {
+                                        if (_disallow.includes(_value[i])) {
+                                            shouldInput = false;
+                                            break;
+                                        }
                                     }
                                 }
                             }
-                        }
-                        if (shouldInput) {
-                            setInputValue(e.target.value);
-                            let enew = {
-                                ...e,
-                                target: {
-                                    ...e.target,
-                                    value: shouldAddFix ? (prefixValue + e.target.value + suffixValue) : e.target.value
+                            if (shouldInput) {
+                                setInputValue(e.target.value);
+                                let enew = {
+                                    ...e,
+                                    target: {
+                                        ...e.target,
+                                        value: shouldAddFix ? (prefixValue + e.target.value + suffixValue) : e.target.value
+                                    }
                                 }
+                                onChange?.(enew);
                             }
-                            onChange?.(enew);
-                        }
-                    }}
-                    {...props}
-                />
+                        }}
+                        {...props}
+                    />
+                    {decoration && decoration}
+                </div>
                 {suffix && (isSuffixArray ? (
                     <TempDropDown
                         direction={direction}
