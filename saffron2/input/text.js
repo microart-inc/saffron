@@ -157,9 +157,9 @@ export default function TextInput({
     }
 
     return (
-        <div className={styles.inputAndLabelWrapper}>
-            {label && <label for={id}>{label}</label>}
-            <div className={styles.textinputWrapper} {...props}>
+        <div className={styles.inputAndLabelWrapper} {...props}>
+            {label && <label htmlFor={id}>{label}</label>}
+            <div className={styles.textinputWrapper}>
                 {prefix && (isPrefixArray ? (
                     <TempDropDown
                         direction={direction}
@@ -255,7 +255,6 @@ export default function TextInput({
                                 onChange?.(enew);
                             }
                         }}
-                        {...props}
                     />
                     {decoration && decoration}
                 </div>

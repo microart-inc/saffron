@@ -8,8 +8,18 @@
     flex-direction: row;
     align-items: center;
     gap: 0.5em;
+
+    --button-hover-bs: none;
+    --button-hover-text-color: var(--s-clr);
+    --button-hover-bg-color: transparent;
+
+    transition: box-shadow 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
 }
 
 .button:hover {
-    filter: brightness(1.1);
+    box-shadow: var(--button-hover-bs) !important;
+    background: var(--button-hover-bg-color) !important;
+    color: var(--button-hover-text-color) !important;
 }

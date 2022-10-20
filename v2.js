@@ -1,5 +1,3 @@
-import './vars.css';
-
 import Container from './saffron2/container/container';
 import Text from './saffron2/text/text';
 import Heading from './saffron2/heading/heading';
@@ -18,6 +16,7 @@ import TextInput from './saffron2/input/text';
 import ByteInput from './saffron2/input/byte';
 import ImageInput from './saffron2/input/image';
 import Line from './saffron2/line/line';
+import Nav from './saffron2/nav/nav';
 
 export {
     Container,
@@ -37,5 +36,6 @@ export {
     TextInput,
     ByteInput,
     ImageInput,
-    Line
+    Line,
+    Nav
 };

@@ -2,10 +2,10 @@ import React, { useRef } from "react";
 import { IoDocument, IoDocumentText, IoFilm, IoImage } from "react-icons/io5";
 import styles from './image.module.css';
 
-export default function ImageInput() {
+export default function ImageInput({ value, onChange }) {
 
     let [imgBlob, setImgBlob] = React.useState(null);
-    let [file, setFile] = React.useState(null);
+    let [file, setFile] = React.useState(value);
 
     let fileInput = React.useRef(null);
 
@@ -44,6 +44,7 @@ export default function ImageInput() {
     let loadFile = (file) => {
         if (file) {
             setFile(file);
+            onChange?.(file);
             if (file.type.startsWith("image/")) {
                 let reader = new FileReader();
                 reader.onload = e => {

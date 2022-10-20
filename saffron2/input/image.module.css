@@ -43,6 +43,8 @@
     /*border-left: var(--s-border-4);*/
     box-shadow: inset 2.4px 0 0 -1.2px var(--s-border-4-color);
     display: flex;
+    align-items: center;
+    justify-content: center;
     background: var(--s-bg-5);
     color: var(--s-clr-3);
     cursor: pointer;

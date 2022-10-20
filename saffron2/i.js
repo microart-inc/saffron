@@ -5,6 +5,8 @@ const properties = [
     'cursor', 'display', 'flex', 'flexDirection', 'flexWrap', 'justifyContent',
     'borderTop', 'borderBottom', 'borderLeft', 'borderRight',
     'marginTop', 'marginBottom', 'marginLeft', 'marginRight',
+    'borderColor', 'letterSpacing', 'paddingTop', 'paddingBottom', 'paddingLeft',
+    'paddingRight'
 ];
 // [key, style-key, default if true, should allow custom value]
 const specialProperties = [
@@ -16,6 +18,8 @@ const customProperties = [
     ['xxsmall', 'fontSize', '0.55em'],
     ['xsmall', 'fontSize', '0.7em'],
     ['small', 'fontSize', '0.8em'],
+    ['medium', 'fontSize', '0.9em'],
+    ['normal', 'fontSize', '1em'],
     ['large', 'fontSize', '1.2em'],
     ['xlarge', 'fontSize', '1.4em'],
     ['xxlarge', 'fontSize', '1.6em'],
@@ -49,11 +53,11 @@ export function istyleParser(props, isText = false) {
             borderRadius: 3,
             padding: "1px 4px"
         };
-    } 
-    
+    }
+
     if (props.rawBg) {
         delete props.rawBg;
-    }    
+    }
 
     properties.forEach((prop) => {
         if (props[prop]) {
