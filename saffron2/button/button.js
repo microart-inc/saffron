@@ -50,6 +50,7 @@ export default function Button(_props) {
             '--button-hover-bg-color': 'none',
             '--button-hover-text-color': bgHover,
         }
+        delete props.link;
     } else {
         props.style = {
             ...props.style,

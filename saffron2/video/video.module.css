@@ -1,0 +1,161 @@
+.video {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
+    border-radius: 5px;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+.wrapper>* {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4px 3px;
+}
+
+.controlsBottom {
+    border-radius: 8px;
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    color: white;
+    min-height: 23px;
+    gap: 4px;
+}
+
+
+.controlsBottomButtons>svg {
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.controlsBottomButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 8px;
+}
+
+.progressWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    height: 2px;
+    cursor: pointer;
+    transition: height 0.2s ease;
+    padding: 2px 0;
+}
+
+.progressWrapper>* {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.progress {
+    height: 100%;
+    background: red;
+    flex-grow: 1;
+}
+
+.progressBuffered {
+    height: 100%;
+    background: blue;
+    width: 0;
+}
+
+.progressTrack {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    width: 100%;
+}
+
+.progressWrapper:hover {
+    height: 4px;
+}
+
+.progressWrapper:hover .progressTrack {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.progressWrapper:hover .progressThumb {
+    width: 10px;
+    height: 10px;
+    margin-top: -3px;
+    margin-left: -5px;
+}
+
+.progressBar {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+.progressThumb {
+    width: 0;
+    height: 0;
+    margin-top: 1px;
+    margin-left: -1px;
+    border-radius: 50%;
+    position: relative;
+    background: red;
+    transition: width 0.2s ease,
+        height 0.2s ease,
+        margin 0.2s ease;
+}
+
+.progressThumbWrapper {
+    height: 2px;
+    width: 0;
+}
+
+.volumeSlider {
+    width: 0;
+    height: 2px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    margin-left: 0;
+    transition: width 0.2s ease,
+        margin 0.2s ease;
+}
+
+.volumeSlider>* {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.volume:hover .volumeSlider {
+    width: 75px;
+    margin-left: 5px;
+}
+
+.volume {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.volumeSliderTrack {
+    background: rgba(255, 255, 255, 0.3);
+    height: 100%;
+}
+
+.volumeSliderBar {
+    background: white;
+    height: 100%;
+}

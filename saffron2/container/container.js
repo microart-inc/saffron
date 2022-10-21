@@ -19,7 +19,7 @@ export default function Container(_props) {
     if (Array.isArray(props.children)) {
         props.children.forEach(x => {
             ensure_nav_not_in_container(x, Nav);
-            if (x.type == React.Fragment) {
+            if (x && x.type == React.Fragment) {
                 x.props.children.forEach(y => {
                     ensure_nav_not_in_container(y, Nav);
                 });
@@ -52,7 +52,7 @@ class NavInContainerError extends Error {
 }
 
 const ensure_nav_not_in_container = (container, nav) => {
-    if (container.type === nav) {
+    if (container && container.type === nav) {
         throw new NavInContainerError("Nav component cannot be used inside a container");
     }
 }

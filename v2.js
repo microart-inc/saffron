@@ -17,6 +17,7 @@ import ByteInput from './saffron2/input/byte';
 import ImageInput from './saffron2/input/image';
 import Line from './saffron2/line/line';
 import Nav from './saffron2/nav/nav';
+import Video from './saffron2/video/video';
 
 export {
     Container,
@@ -37,5 +38,6 @@ export {
     ByteInput,
     ImageInput,
     Line,
-    Nav
+    Nav,
+    Video
 };
