@@ -12,6 +12,15 @@ const formatters = [
         formatter: new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
+            minimumFractionDigits: 0,
+        }),
+    },
+    {
+        name: 'currencyWithCents',
+        formatter: new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
         }),
     },
     {
