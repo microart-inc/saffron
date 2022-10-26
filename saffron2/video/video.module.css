@@ -57,7 +57,7 @@
     height: 2px;
     cursor: pointer;
     transition: height 0.2s ease;
-    padding: 2px 0;
+    padding: 5px 0;
 }
 
 .progressWrapper>* {
