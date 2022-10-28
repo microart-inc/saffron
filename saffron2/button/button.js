@@ -29,7 +29,6 @@ export default function Button(_props) {
         delete props.color;
     }
 
-
     if (props.primary) {
         props.style = {
             ...props.style,
@@ -50,6 +49,7 @@ export default function Button(_props) {
             '--button-hover-bg-color': 'none',
             '--button-hover-text-color': bgHover,
         }
+        console.log(props.style);
         delete props.link;
     } else {
         props.style = {
@@ -62,6 +62,8 @@ export default function Button(_props) {
             '--button-hover-text-color': bgHover,
         }
     }
+
+    console.log(props);
 
 
     props = istyleParser(props);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../button/button";
 import Icon from "../icon/icon";
 import TextInput from "../input/text";
@@ -91,19 +91,22 @@ export default function Nav({ title, subtitle }) {
         ]
     };
 
-    let isDarkTheme = false;
-    if (typeof window !== "undefined") {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            isDarkTheme = true;
-        } else if (document.body.parentElement.getAttribute("data-theme") === "dark") {
-            isDarkTheme = true;
-        }
-    }
+    let [isDarkTheme, setDarkTheme] = React.useState(false);
 
     let buttonLight = "#606060";
-    let buttonDark = "#c0d0e0";
+    let buttonDark = "#b0b0c0";
 
     let buttonColor = isDarkTheme ? buttonDark : buttonLight;
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setDarkTheme(true);
+            } else if (document.body.parentElement.getAttribute("data-theme") === "dark") {
+                setDarkTheme(true);
+            }
+        }
+    }, []);
 
     return (
         <>
