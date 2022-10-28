@@ -5,6 +5,7 @@
   "main": "Saffron.js",
   "license": "MIT",
   "dependencies": {
+    "color": "^4.2.3",
     "framer-motion": "^7.5.2",
     "moment": "^2.29.4",
     "react": "^18.1.0",

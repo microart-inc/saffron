@@ -6,7 +6,7 @@ const properties = [
     'borderTop', 'borderBottom', 'borderLeft', 'borderRight',
     'marginTop', 'marginBottom', 'marginLeft', 'marginRight',
     'borderColor', 'letterSpacing', 'paddingTop', 'paddingBottom', 'paddingLeft',
-    'paddingRight'
+    'paddingRight', 'fontWeight'
 ];
 // [key, style-key, default if true, should allow custom value]
 const specialProperties = [
