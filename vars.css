@@ -93,6 +93,7 @@ html[data-theme="dark"] {
     --s-clr-3: #aebbc5;
     --s-clr-4: #9daab5;
     --s-clr-5: #8c99a5;
+    
     --s-clr-invert: black;
     --s-accent: rgb(10, 137, 255);
     --s-accent-hover: rgb(20, 155, 255);

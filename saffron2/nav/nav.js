@@ -91,6 +91,20 @@ export default function Nav({ title, subtitle }) {
         ]
     };
 
+    let isDarkTheme = false;
+    if (typeof window !== "undefined") {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            isDarkTheme = true;
+        } else if (document.body.parentElement.getAttribute("data-theme") === "dark") {
+            isDarkTheme = true;
+        }
+    }
+
+    let buttonLight = "#606060";
+    let buttonDark = "#c0d0e0";
+
+    let buttonColor = isDarkTheme ? buttonDark : buttonLight;
+
     return (
         <>
             <nav className={styles.nav}>
@@ -132,9 +146,9 @@ export default function Nav({ title, subtitle }) {
                     )}
                 </div>
                 <div className={styles.right}>
-                    <Button link medium bg="#606060">Example</Button>
-                    <Button link medium bg="#606060">Navigation</Button>
-                    <Button link medium bg="#606060">Buttons</Button>
+                    <Button link medium bg={buttonColor}>Example</Button>
+                    <Button link medium bg={buttonColor}>Navigation</Button>
+                    <Button link medium bg={buttonColor}>Buttons</Button>
                 </div>
             </nav>
             <div className={styles.ghost} />
