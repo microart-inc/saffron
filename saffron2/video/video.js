@@ -45,9 +45,11 @@ export default function Video(_props) {
 
     const videoRef = useRef(null);
     const progressBarRef = useRef(null);
+    const volumeRef = useRef(null);
     const progressTrackRef = useRef(null);
     const [playing, setPlaying] = React.useState(false);
     const [showControls, setShowControls] = React.useState(false);
+    const [volume, setStateVolume] = React.useState(1);
 
     const updatePlayerHeadPosition = () => {
         const video = videoRef.current;
@@ -74,6 +76,10 @@ export default function Video(_props) {
         cancelAnimationFrame(updatePlayerHeadPosition);
     }
 
+    const updatePlayerVolume = () => {
+        setStateVolume(videoRef.current.volume);
+    }
+
     const setPlayerStatePlay = () => {
         videoRef.current.play();
     }
@@ -88,6 +94,16 @@ export default function Video(_props) {
         const progressBar = progressTrackRef.current;
         const percentage = (e.clientX - progressBar.getBoundingClientRect().left) / progressBar.getBoundingClientRect().width;
         video.currentTime = percentage * video.duration;
+    }
+
+    const setVolume = (e) => {
+        if (!window.__pointerDown) return;
+        const video = videoRef.current;
+        const volumeBar = volumeRef.current;
+        let percentage = (e.clientX - volumeBar.getBoundingClientRect().left) / volumeBar.getBoundingClientRect().width;
+        percentage = Math.min(1, Math.max(0, percentage));
+        if (percentage > 0.95) percentage = 1;
+        video.volume = percentage;
     }
 
     useEffect(() => {
@@ -115,6 +131,7 @@ export default function Video(_props) {
                 onPlay={updatePlayerStatePlay}
                 onPause={updatePlayerStatePause}
                 onEnded={updatePlayerStatePause}
+                onVolumeChange={updatePlayerVolume}
             />
             <div className={styles.controls}>
                 <div></div>
@@ -152,8 +169,26 @@ export default function Video(_props) {
                         <div className={styles.volume}>
                             <IoVolumeHigh />
                             <div className={styles.volumeSlider}>
-                                <div className={styles.volumeSliderTrack}></div>
-                                <div className={styles.volumeSliderBar} style={{ width: "50%" }}></div>
+                                <div className={styles.volumeSliderTrack}
+                                    ref={volumeRef}
+                                    onMouseDown={(e) => {
+                                        console.log(e);
+                                        window.__pointerDown = true;
+                                        setVolume(e);
+                                    }}
+                                    onMouseMove={setVolume}
+                                    onDragStart={(e) => e.preventDefault()}
+                                ></div>
+                                <div className={styles.volumeSliderBar}
+                                    style={{ width: volume * 100 + "%" }}
+                                    onMouseDown={(e) => {
+                                        console.log(e);
+                                        window.__pointerDown = true;
+                                        setVolume(e);
+                                    }}
+                                    onMouseMove={setVolume}
+                                    onDragStart={(e) => e.preventDefault()}
+                                ></div>
                             </div>
                         </div>
                     </div>
