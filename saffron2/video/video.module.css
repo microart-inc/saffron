@@ -125,11 +125,14 @@
 
 .volumeSlider {
     width: 0;
-    height: 2px;
+    height: 4px;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    margin-left: 0;
+    margin-right: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    overflow: hidden;
     transition: width 0.2s ease,
         margin 0.2s ease;
 }
@@ -141,13 +144,14 @@
 
 .volume:hover .volumeSlider {
     width: 75px;
-    margin-left: 5px;
+    margin-right: 10px;
 }
 
 .volume {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-items: center;
+    padding: 0 10px;
 }
 
 .volumeSliderTrack {
@@ -158,4 +162,36 @@
 .volumeSliderBar {
     background: white;
     height: 100%;
+}
+
+.volumeIcon {
+    cursor: pointer;
+}
+
+.error {
+    background: black;
+    aspect-ratio: 16/9;
+    width: 500px;
+    height: auto;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.errorInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 1em;
+    gap: 2px;
+}
+
+.errorInfo :last-child {
+    font-size: 0.75em;
+    color: #aaa;
 }
