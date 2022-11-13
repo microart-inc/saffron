@@ -18,6 +18,7 @@ import ImageInput from './saffron2/input/image';
 import Line from './saffron2/line/line';
 import Nav from './saffron2/nav/nav';
 import Video from './saffron2/video/video';
+import Inspector from './saffron2/inspector/inspector';
 
 export {
     Container,
@@ -39,5 +40,6 @@ export {
     ImageInput,
     Line,
     Nav,
-    Video
+    Video,
+    Inspector,
 };
