@@ -13,6 +13,7 @@ export default function Inspector() {
 
     const toolbarRef = useRef(null);
     const wrapperRef = useRef(null);
+    const [dom, setDom] = React.useState(null);
 
     useEffect(() => {
         const handleMouseDown = (e) => {
@@ -45,6 +46,13 @@ export default function Inspector() {
         document.addEventListener('mouseup', handleMouseUp);
         document.addEventListener('mousemove', handleMouseMove);
 
+        setDom([...document.body.children]);
+
+        global.inspectorHoverElement = document.createElement('div');
+        global.inspectorHoverElement.appendChild(document.createElement('div'));
+        global.inspectorHoverElement.classList.add(styles.hoverElement);
+        document.body.appendChild(global.inspectorHoverElement);
+
         return () => {
             document.removeEventListener('mousedown', handleMouseDown);
             document.removeEventListener('mouseup', handleMouseUp);
@@ -59,23 +67,57 @@ export default function Inspector() {
                 <IoClose />
             </div>
             <div className={styles.content}>
-                {[...document.body.children].map((element, index) => {
-                    return <DomElement key={index} element={element} />
+                {dom?.map((element, index) => {
+                    return <DomElement key={index} element={element} wrapperRef={wrapperRef} />
                 })}
             </div>
         </div>
     )
 }
 
-function DomElement({ element }) {
+function DomElementName({ element }) {
+    return (
+        <summary>
+            <span>{element.tagName.toLowerCase()}</span>
+            {element.id && <span>{element.id}</span>}
+            {element.className && <span>.{element.className}</span>}
+        </summary>
+    )
+}
+
+function formatElementName(element) {
+    let name = element.tagName.toLowerCase();
+    if (element.id) name += "#" + element.id;
+    if (element.className) name += "." + element.className;
+    return name;
+}
+
+function DomElement({ element, wrapperRef }) {
+    if (element === wrapperRef.current) return null;
     return (
         <div>
-            {element.tagName.toLowerCase()}
-            <div style={{ marginLeft: 5 }}>
-                {[...element.children].map((child, index) =>
-                    <DomElement key={index} element={child} />
+            <details style={{ marginLeft: 10 }}>
+                <summary
+                    onMouseEnter={() => {
+                        global.inspectorHoverElement.style.visibility = "visible";
+                        let rect = element.getBoundingClientRect();
+                        global.inspectorHoverElement.style.left = rect.left + "px";
+                        global.inspectorHoverElement.style.top = rect.top + "px";
+                        global.inspectorHoverElement.style.width = rect.width + "px";
+                        global.inspectorHoverElement.style.height = rect.height + "px";
+                        global.inspectorHoverElement.children[0].innerHTML = formatElementName(element);
+                        global.$_ = element;
+                    }}
+                    onMouseLeave={() => {
+                        global.inspectorHoverElement.style.visibility = "hidden";
+                    }}
+                >{element.tagName.toLowerCase()}</summary>
+                {element.children.length > 0 ? ([...element.children].map((child, index) =>
+                    <DomElement key={index} element={child} wrapperRef={wrapperRef} />
+                )) : (
+                    <div style={{ marginLeft: 10 }}>{element.innerHTML}</div>
                 )}
-            </div>
+            </details>
         </div>
     )
 }

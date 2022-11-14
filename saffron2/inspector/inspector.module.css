@@ -38,3 +38,27 @@
     overflow-x: hidden;
     
 }
+
+.wrapper summary {
+    cursor: pointer;
+}
+
+.hoverElement {
+    display: block;
+    background: rgba(170,80,170,0.6);
+    position: absolute;
+    z-index: 999999;
+    border: 1px solid blue;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.hoverElement div {
+    margin-top: -2em;
+    background: white;
+    box-shadow: var(--s-bs-heavy);
+    border: var(--s-border-8);
+    border-radius: 4px;
+    padding: 5px;
+    width: fit-content;
+}
